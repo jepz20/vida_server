@@ -1,0 +1,12 @@
+.DS_Store
+.nodemonignore
+.sass-cache/
+node_modules/
+public/lib
+public/pdfs/*
+public/contenido/*
+test/coverage/
+.bower-cache
+.bower-registry
+.bower-tmp
+texo.txt
