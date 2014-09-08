@@ -2,43 +2,56 @@ Base de datos
 
 
 Usuarios
-  id
-  email
+  id*
+  email *
   password
-  Ultima_dono
-  proxima_ves_que_puede_donar
-  tipo_sangre
-  foto
-  ubicacion_usuario
+  Ultima_dono*
+  proxima_ves_que_puede_donar *
+  tipo_sangre *
+  foto *
+  ubicacion_usuario*
+  sexo*
   personas_extras
-    id
-    nombre
-    tipo_sangre
-    Foto
-
+    id*
+    nombre*
+    tipo_sangre*
+    Foto*
+    sexo*
+  donaciones_pedidas
+    id_donacion
+  donaciones_hechas
+    id_donacion
 
 
 Donaciones
-  id
-  usuario_id
-  tipo_sangre
-  fecha_solicitud
-  estado
-  cantidad_pedida
-  cantidad_donada
-  lugar_para_hacer_donacion
-  donaciones_hechas
-    usuarios_id
-    comprobante
-    fecha_donacion 
+  id*
+  usuario_id*
+  tipo_sangre*
+  fecha_solicitud*
+  estado*
+  cantidad_pedida*
+  cantidad_donada*
+  lugar_donacion*
+  donaciones_hechas*
+    usuarios_id*
+    comprobante*
+    fecha_donacion*
+
+Lugares
+  nombre*
+  ubicacion
+  fecha_agregado*
+
+Eventos
+  fecha_inicio*
+  fecha_fin*
+  estado*
+  lugar*
+  nombre*
+  descripcion*
+  logo
+  cantidad_donada*
 
 
-	
 
 
-
-Lugares_donacion
-    
-	
-				
-		

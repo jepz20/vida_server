@@ -1,0 +1,32 @@
+{
+  "name": "vida_server",
+  "version": "0.0.0",
+  "description": "Servidor REST para la aplicacion vida (donacion de sangre)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jepz20/vida_server.git"
+  },
+  "keywords": [
+    "rest",
+    "api",
+    "vida",
+    "sangre"
+  ],
+  "author": "verticalabs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jepz20/vida_server/issues"
+  },
+  "homepage": "https://github.com/jepz20/vida_server",
+  "dependencies": {
+    "restify": "^2.8.2",
+    "mongoose": "^3.8.15",
+    "mean-logger": "0.0.1",
+    "lodash": "^2.4.1",
+    "crypto": "0.0.3"
+  }
+}
