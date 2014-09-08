@@ -25,3 +25,4 @@ module.exports = function(server) {
     server.del('/usuario/:id', usuarios.destroy);
 
 };
+

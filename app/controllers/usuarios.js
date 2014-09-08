@@ -68,11 +68,9 @@ exports.create = function (req, res, next) {
                 JSON.stringify(error.err)))
         }
         else {
-            console.log('data')
-            console.log(data)
             res.json(data);
         }
-        res.send(201,user)
+        res.send(201,dataUsuario)
     })
 }
 
@@ -275,7 +273,7 @@ exports.destroy = function(req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.all = function(req, res, next) {
-        Usuario.find({}, function (error, users) {
-            res.send(users)
+        Usuario.find({}, function (error, usuarios) {
+            res.send(usuarios)
         })
     }

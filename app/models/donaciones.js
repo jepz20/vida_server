@@ -24,19 +24,25 @@ var Donacion = new Schema ({
     },
     estado: {
         type: String,
-        trim: true
+        trim: true,
+        default: 'A'
     },
     cantidad_pedida: {
         type: Number,
         default: 0
     },
-    cantidad_donada: {
+    cantidad_pendientes: {
+        type: Number,
+        default: 0
+    },
+    cantidad_confirmadas: {
         type: Number,
         default: 0
     },
     lugar_donacion: {
-        type: ObjectId,
-        ref: 'Lugar'
+        type: String
+        // type: ObjectId,
+        // ref: 'Lugar'
     },
     donaciones_hechas: [{
         fecha_donacion: {
@@ -50,6 +56,11 @@ var Donacion = new Schema ({
         comprobante: {
             type: String,
             trim: true
+        },
+        estado: {
+            type: String,
+            trim: true,
+            default: 'P'
         }
     }]
 });

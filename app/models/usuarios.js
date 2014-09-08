@@ -69,7 +69,11 @@ var Usuario = new Schema ({
     }],
     donaciones_hechas: [{
         type: Schema.ObjectId,
-        ref: 'User'
+        ref: 'Donacion'
+    }],
+    donaciones_pendientes: [{
+        type: Schema.ObjectId,
+        ref: 'Donacion'
     }]
 });
 
