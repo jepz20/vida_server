@@ -18,7 +18,7 @@ var Lugar = new Schema ({
         type: Date,
         default: Date.now
     },
-    ubicaion: {
+    ubicacion: {
         type: [Number],
         index: '2d'
     }

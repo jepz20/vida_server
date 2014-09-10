@@ -26,15 +26,16 @@ var Evento = new Schema ({
     },
     estado: {
         type: String,
+        default: 'A',
         trim: true
     },
     cantidad_donada: {
         type: Number,
         default: 0
     },
-    lugar_evento: {
-        type: ObjectId,
-        ref: 'Lugar'
+    ubicacion: {
+        type: [Number],
+        index: '2d'
     },
     logo: {
         type: String,

@@ -18,6 +18,7 @@ module.exports = function(server) {
     server.post('/donacion', donaciones.create);
     server.post('/donacion/cancelar_donacion/:id', donaciones.cancelarDonacion);
     server.post('/donacion/atender_solicitud/:id', donaciones.atenderSolicitud);
+    server.post('/donacion/confirmar_donacion/:id', donaciones.confirmarDonacion);
     server.get('/donacion/:id', donaciones.show);
     server.put('/donacion/:id', donaciones.update);
 

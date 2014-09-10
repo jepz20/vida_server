@@ -63,7 +63,6 @@ exports.create = function (req, res, next) {
     var usuario = new Usuario(dataUsuario);
     usuario.save(function(error,data) {
         if (error) {
-            console.log(error);
             return next (new restify.InvalidArgumentError(
                 JSON.stringify(error.err)))
         }
@@ -204,8 +203,6 @@ exports.borrarPersonaExtra = function(req, res, next) {
 exports.modificarPersonaExtra = function(req, res, next) {
     var parametros = JSON.parse(req.body);
     var posicion = -1
-    console.log('parametros._id');
-    console.log(parametros._id);
     Usuario.findOne({_id: req.params.id}, function(error, usuario){
         if (error) {
             return next (new restify.InvalidArgumentError(
