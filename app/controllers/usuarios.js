@@ -51,18 +51,24 @@ exports.show = function (req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.create = function (req, res, next) {
-    var parametros = JSON.parse(req.body);
+    var parametros = {}
+    parametros = req.body;
+    console.log('parametros');
+    console.log(parametros);
     var dataUsuario = {
         email: parametros.email,
         nombre: parametros.nombre,
         tipo_sangre: parametros.tipo_sangre,
         foto: parametros.foto,
-        ubicacion: parametros.ubicacion,
+        ubicacion: JSON.parse(parametros.ubicacion),
         password: parametros.password
     }
+    console.log('dataUsuario');
+    console.log(dataUsuario);
     var usuario = new Usuario(dataUsuario);
     usuario.save(function(error,data) {
         if (error) {
+            console.log(error);
             return next (new restify.InvalidArgumentError(
                 JSON.stringify(error.err)))
         }
@@ -80,7 +86,8 @@ exports.create = function (req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.update = function(req, res, next) {
-    var parametros = JSON.parse(req.body);
+    var parametros = {}
+    parametros = req.body;
     var dataUsuario = {};
     if (parametros.email){
         dataUsuario.email = parametros.email;
@@ -101,10 +108,11 @@ exports.update = function(req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.cambiarUbicacion = function(req, res, next) {
-    var parametros = JSON.parse(req.body);
+    var parametros = {}
+    parametros = req.body;
 
     var dataUsuario = {
-        ubicacion: parametros.ubicacion
+        ubicacion: JSON.parse(parametros.ubicacion)
     }
     buscarParaActualizar(res,req.params.id,dataUsuario);
 }
@@ -118,7 +126,8 @@ exports.cambiarUbicacion = function(req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.agregarPersonaExtra = function(req, res, next) {
-    var parametros = JSON.parse(req.body);
+    var parametros = {}
+    parametros = req.body;
 
     var persona_extra = {
             nombre: parametros.nombre,
@@ -159,7 +168,8 @@ exports.agregarPersonaExtra = function(req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.borrarPersonaExtra = function(req, res, next) {
-    var parametros = JSON.parse(req.body);
+    var parametros = {}
+    parametros = req.body;
     var posicion = -1
     Usuario.findOne({_id: req.params.id}, function(error, usuario){
         if (error) {
@@ -201,7 +211,8 @@ exports.borrarPersonaExtra = function(req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.modificarPersonaExtra = function(req, res, next) {
-    var parametros = JSON.parse(req.body);
+    var parametros = {}
+    parametros = req.body;
     var posicion = -1
     Usuario.findOne({_id: req.params.id}, function(error, usuario){
         if (error) {

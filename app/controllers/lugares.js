@@ -51,10 +51,11 @@ exports.show = function (req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.create = function (req, res, next) {
-    var parametros = JSON.parse(req.body);
+    var parametros = {}
+    parametros = req.body;
     var dataLugar = {
         nombre: parametros.nombre,
-        ubicacion: parametros.ubicacion
+        ubicacion: JSON.parse(parametros.ubicacion)
     }
     var lugar = new Lugar(dataLugar);
     lugar.save(function(error,data) {
@@ -76,7 +77,8 @@ exports.create = function (req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.update = function(req, res, next) {
-    var parametros = JSON.parse(req.body);
+    var parametros = {}
+    parametros = req.body;
     var dataLugar = {};
     if (parametros.nombre){
         dataLugar.nombre = parametros.nombre;
@@ -91,10 +93,11 @@ exports.update = function(req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.cambiarUbicacion = function(req, res, next) {
-    var parametros = JSON.parse(req.body);
+    var parametros = {}
+    parametros = req.body;
 
     var dataLugar = {
-        ubicacion: parametros.ubicacion
+        ubicacion: JSON.parse(parametros.ubicacion)
     }
     buscarParaActualizar(res,req.params.id,dataLugar);
 }

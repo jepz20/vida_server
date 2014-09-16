@@ -59,7 +59,8 @@ exports.show = function (req, res, next) {
  */
 exports.create = function (req, res, next) {
     //TODO avisar a los demas usuarios que se necesita donacion
-    var parametros = JSON.parse(req.body);
+    var parametros = {}
+    parametros = req.body;
     var dataDonacion = {
         creado_por: parametros.creado_por,
         tipo_sangre: parametros.tipo_sangre,
@@ -119,7 +120,8 @@ exports.create = function (req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.update = function(req, res, next) {
-    var parametros = JSON.parse(req.body);
+    var parametros = {}
+    parametros = req.body;
     var dataDonacion = {};
     if (parametros.cantidad_pedida){
         dataDonacion.cantidad_pedida = parametros.cantidad_pedida;
@@ -153,7 +155,8 @@ exports.cancelarDonacion = function(req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.atenderSolicitud = function(req, res, next) {
-    var parametros = JSON.parse(req.body);
+    var parametros = {}
+    parametros = req.body;
 
     var datosDonacion = {
         hecha_por: parametros.hecha_por
@@ -222,7 +225,8 @@ exports.atenderSolicitud = function(req, res, next) {
  */
 exports.confirmarDonacion = function(req, res, next) {
 
-    var parametros = JSON.parse(req.body);
+    var parametros = {}
+    parametros = req.body;
     var hechaPor = parametros.hecha_por;
     var idDonacion = req.params.id;
     //TODO validacion usuario no ha donado recientemente

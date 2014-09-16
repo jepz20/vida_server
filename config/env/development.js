@@ -6,28 +6,13 @@ module.exports = {
         name: "Vida-- Donacion de Sangre"
     },
     facebook: {
-        clientID: "APP_ID",
-        clientSecret: "APP_SECRET",
-        callbackURL: "http://localhost:3000/auth/facebook/callback"
-    },
-    twitter: {
-        clientID: "CONSUMER_KEY",
-        clientSecret: "CONSUMER_SECRET",
-        callbackURL: "http://localhost:3000/auth/twitter/callback"
-    },
-    github: {
-        clientID: "APP_ID",
-        clientSecret: "APP_SECRET",
-        callbackURL: "http://localhost:3000/auth/github/callback"
+        clientID: "367208613382846",
+        clientSecret: "a601753190447a135ad938aa7f41cec1",
+        callbackURL: "http://localhost:2222/auth/facebook/callback"
     },
     google: {
-        clientID: "APP_ID",
-        clientSecret: "APP_SECRET",
-        callbackURL: "http://localhost:3000/auth/google/callback"
-    },
-    linkedin: {
-        clientID: "API_KEY",
-        clientSecret: "SECRET_KEY",
-        callbackURL: "http://localhost:3000/auth/linkedin/callback"
+        clientID: "349006955085-9s64ogeagcr04frducjft355fi4rjv2n.apps.googleusercontent.com",
+        clientSecret: "i5lRlptXzfoKkeZ4SZqi3yMB",
+        callbackURL: "http://localhost:2222/auth/google/callback"
     }
 }

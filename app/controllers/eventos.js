@@ -51,13 +51,14 @@ exports.show = function (req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.create = function (req, res, next) {
-    var parametros = JSON.parse(req.body);
+    var parametros = {}
+    parametros = req.body;
     var dataEvento = {
         nombre: parametros.nombre,
         descripcion: parametros.descripcion,
         fecha_inicio: parametros.fecha_inicio,
         fecha_fin: parametros.fecha_fin,
-        ubicacion: parametros.ubicacion
+        ubicacion: JSON.parse(parametros.ubicacion)
     }
     var evento = new Evento(dataEvento);
     evento.save(function(error,data) {
@@ -79,7 +80,8 @@ exports.create = function (req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.update = function(req, res, next) {
-    var parametros = JSON.parse(req.body);
+    var parametros = {}
+    parametros = req.body;
     var dataEvento = {};
     if (parametros.nombre){
         dataEvento.nombre = parametros.nombre;
@@ -94,7 +96,7 @@ exports.update = function(req, res, next) {
         dataEvento.fecha_fin = parametros.fecha_fin;
     }
     if (parametros.ubicacion){
-        dataEvento.ubicacion = parametros.ubicacion;
+        dataEvento.ubicacion = JSON.parse(parametros.ubicacion);
     }
     buscarParaActualizar(res,req.params.id,dataEvento);
 }
@@ -110,7 +112,6 @@ exports.cancelarEvento = function(req, res, next) {
     var dataEvento = {
         estado: 'C'
     }
-    console.log(dataEvento);
     buscarParaActualizar(res,req.params.id,dataEvento);
 }
 

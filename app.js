@@ -4,7 +4,7 @@
 var restify = require('restify')
     ,mongoose = require('mongoose')
     ,fs = require('fs')
-    ,logger = require('mean-logger');
+    ,passport = require('passport');
 
 
 //Se cargan las configuraciones dependiendo del ambiente
@@ -12,7 +12,6 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 //requiero la configuracion despues de definir el ambiente
 var config = require('./config/config')
-
 //inicio la conexion a mongo
 var db = mongoose.connect(config.db);
 
@@ -36,14 +35,24 @@ var walk = function(path) {
 };
 walk(models_path);
 
+// cargo la config de passport
+require('./config/passport')(passport);
+
 var server = restify.createServer({ name : 'vida-api'});
+
+// server.use(restify.acceptParser(server.acceptable));
+server.use(restify.authorizationParser());
+// server.use(restify.dateParser());
+server.use(restify.queryParser({ mapParams : false }));
+// server.use(restify.urlEncodedBodyParser());
+server.use(restify.bodyParser({ mapParams : false }));
+server.use(restify.fullResponse())
+    // .use(restify.bodyParser())
+server.use(passport.initialize());
 
 //Directorio para las rutas
 var routes_path = __dirname +'/app/routes';
 
-server
-    .use(restify.fullResponse())
-    .use(restify.bodyParser());
 
 var walk = function(path) {
     fs.readdirSync(path).forEach(function(file) {
@@ -51,7 +60,7 @@ var walk = function(path) {
         var stat = fs.statSync(newPath);
         if (stat.isFile()) {
             if (/(.*)\.(js$|coffee$)/.test(file)) {
-                require(newPath)(server);
+                require(newPath)(server,passport);
             }
         // We skip the app/routes/middlewares directory as it is meant to be
         // used and shared by routes as further middlewares and is not a
@@ -76,3 +85,4 @@ server.listen(port,function() {
 
 // Expongo el server
 exports = module.exports = server;
+

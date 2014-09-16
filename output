@@ -15,17 +15,17 @@ Access-Control-Allow-Methods: GET, POST
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
 Content-MD5: UDsIik63GAPWUEIeN62elw==
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Date: Tue, 16 Sep 2014 05:08:02 GMT
 Server: vida-api
-Request-Id: e748e3a0-38b4-11e4-b41f-0326775bffc9
-Response-Time: 3
+Request-Id: 6f05dc40-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 23
 
 [{"email":"paraborrar@example.com","nombre":"Juan Perez","tipo_sangre":"O-","foto":"","ubicacion":[2,1],"hashed_password":"weR4yda2C4HFQO2EwsvSxp5H4xTjbKkbJJOr2vsc3wzwpScDx6Pv6Fh++ddZZE92gI909ed7kOnh2t0H5RnS/g==","salt":"c+lYKaok7T8yweibXloJhg==","donaciones_pendientes":[],"donaciones_hechas":[],"donaciones_pedidas":[],"personas_extras":[{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"}]},{"_id":"540fdd594937351d392e4d6b","email":"pruebasprevia@example.com","nombre":"Juan Perez","tipo_sangre":"O-","foto":"","ubicacion":[2,1],"hashed_password":"weR4yda2C4HFQO2EwsvSxp5H4xTjbKkbJJOr2vsc3wzwpScDx6Pv6Fh++ddZZE92gI909ed7kOnh2t0H5RnS/g==","salt":"c+lYKaok7T8yweibXloJhg==","donaciones_pendientes":[],"donaciones_hechas":[],"donaciones_pedidas":["540fddd24937351d392e4d6f"],"personas_extras":[{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"}]}]
 #############################################
 Prueba agregar un usuarios
 #############################################
 Comando
-curl -i -X POST -d '{ "email": "pruebas@example.com", "nombre": "Juan Perez", "tipo_sangre": "O-", "foto": "", "ubicacion": [2,1], "password": "clave"  }' http://localhost:2222/usuario
+curl -i -X POST -d 'email=pruebas@example.com&nombre=Juan Perez&tipo_sangre=O-&foto=&ubicacion=[2,1]&password=paraque' http://localhost:2222/usuario
 #############################################
 HTTP/1.1 200 OK
 Content-Type: application/json
@@ -35,39 +35,38 @@ Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD
 Access-Control-Allow-Methods: GET, POST
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: Tj6B37U3q500+zdZl2ZEpA==
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Content-MD5: n4Dtnxehva7cIgyjVYh2Mw==
+Date: Tue, 16 Sep 2014 05:08:02 GMT
 Server: vida-api
-Request-Id: e76ce660-38b4-11e4-b41f-0326775bffc9
-Response-Time: 219
+Request-Id: 6f28a680-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 215
 
-{"__v":0,"email":"pruebas@example.com","nombre":"Juan Perez","tipo_sangre":"O-","foto":"","ubicacion":[2,1],"hashed_password":"BPqGOXJNqXNtsS7/vnJ3WMwcFcxmke//I3rMuhSqbLdSsMZ9V5OwZlxCvI5JlLweH88PYQz/g3DtCzG/4kN/2Q==","salt":"e9Jwc1Hkpi7qpOTqORCSYw==","_id":"540ff19b9fd57b955bd79b4b","donaciones_pendientes":[],"donaciones_hechas":[],"donaciones_pedidas":[],"personas_extras":[]}
+{"__v":0,"email":"pruebas@example.com","nombre":"Juan Perez","tipo_sangre":"O-","foto":"","ubicacion":[2,1],"hashed_password":"XGWGOADVPpM3bpFSUD0AIumocbqfaMWD514Ufr0nYKYKW+eCf5L9pyOt+3Z1bX+m1xUBB86X9/dbNT5oz0Dzsg==","salt":"M/r393lxsD+CmFSo/sWGTg==","_id":"5417c5b2cdfb39512b871a1d","donaciones_pendientes":[],"donaciones_hechas":[],"donaciones_pedidas":[],"personas_extras":[]}
 #############################################
 Prueba muestra un solo usuario
 #############################################
 Comando
-curl -i http://localhost:2222/usuario/540fdd594937351d392e4d6b
+curl -i http://localhost:2222/usuario/540fdd594937351d392e4d6b --user pruebas@example.com:paraqueco
 #############################################
-HTTP/1.1 201 Created
-Content-Type: application/json
-Content-Length: 582
+HTTP/1.1 401 Unauthorized
+WWW-Authenticate: Basic realm="Users"
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
 Access-Control-Allow-Methods: GET, PUT, DELETE
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: amSm2rwNpYBlO/966ilm9A==
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Date: Tue, 16 Sep 2014 05:08:02 GMT
 Server: vida-api
-Request-Id: e76f7e70-38b4-11e4-b41f-0326775bffc9
-Response-Time: 5
+Request-Id: 6f4be5f0-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 215
+Transfer-Encoding: chunked
 
-{"_id":"540fdd594937351d392e4d6b","email":"pruebasprevia@example.com","nombre":"Juan Perez","tipo_sangre":"O-","foto":"","ubicacion":[2,1],"hashed_password":"weR4yda2C4HFQO2EwsvSxp5H4xTjbKkbJJOr2vsc3wzwpScDx6Pv6Fh++ddZZE92gI909ed7kOnh2t0H5RnS/g==","salt":"c+lYKaok7T8yweibXloJhg==","donaciones_pendientes":[],"donaciones_hechas":[],"donaciones_pedidas":["540fddd24937351d392e4d6f"],"personas_extras":[{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"}]}
+Unauthorized
 #############################################
 Prueba actualiza un usuario
 #############################################
 Comando
-curl -i  -X PUT http://localhost:2222/usuario/540fdd594937351d392e4d6b -d ' { "nombre": "Juan Mario Perez" }'
+curl -i  -X PUT http://localhost:2222/usuario/540fdd594937351d392e4d6b -d 'nombre=Juan Mario Perez'
 #############################################
 HTTP/1.1 201 Created
 Content-Type: application/json
@@ -78,33 +77,32 @@ Access-Control-Allow-Methods: GET, PUT, DELETE
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
 Content-MD5: c2PoX+nt7m8FOksxlYjAhg==
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Date: Tue, 16 Sep 2014 05:08:02 GMT
 Server: vida-api
-Request-Id: e772b2c0-38b4-11e4-b41f-0326775bffc9
-Response-Time: 6
+Request-Id: 6f5004a0-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 7
 
-{"success":true}
-###Documento cambiado###
+{"success":true}###Documento cambiado###
 HTTP/1.1 201 Created
 Content-Type: application/json
-Content-Length: 587
+Content-Length: 588
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
 Access-Control-Allow-Methods: GET, PUT, DELETE
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: 7IFy2s9lXLb7cSDLsMv1iQ==
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Content-MD5: OE7KXMB7Vz9tppKpVT/JIA==
+Date: Tue, 16 Sep 2014 05:08:02 GMT
 Server: vida-api
-Request-Id: e775e710-38b4-11e4-b41f-0326775bffc9
-Response-Time: 4
+Request-Id: 6f67f970-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 138
 
-{"_id":"540fdd594937351d392e4d6b","email":"pruebasprevia@example.com","nombre":"Juan Jose Perez","tipo_sangre":"O-","foto":"","ubicacion":[2,1],"hashed_password":"weR4yda2C4HFQO2EwsvSxp5H4xTjbKkbJJOr2vsc3wzwpScDx6Pv6Fh++ddZZE92gI909ed7kOnh2t0H5RnS/g==","salt":"c+lYKaok7T8yweibXloJhg==","donaciones_pendientes":[],"donaciones_hechas":[],"donaciones_pedidas":["540fddd24937351d392e4d6f"],"personas_extras":[{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"}]}
+{"_id":"540fdd594937351d392e4d6b","email":"pruebasprevia@example.com","nombre":"Juan Jose Perez}","tipo_sangre":"O-","foto":"","ubicacion":[2,1],"hashed_password":"weR4yda2C4HFQO2EwsvSxp5H4xTjbKkbJJOr2vsc3wzwpScDx6Pv6Fh++ddZZE92gI909ed7kOnh2t0H5RnS/g==","salt":"c+lYKaok7T8yweibXloJhg==","donaciones_pendientes":[],"donaciones_hechas":[],"donaciones_pedidas":["540fddd24937351d392e4d6f"],"personas_extras":[{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"}]}
 #############################################
 Cambia la ubicacion del usuario
 #############################################
 Comando
-curl -i  -X POST http://localhost:2222/usuario/cambiar_ubicacion/540fdd594937351d392e4d6b -d ' { "ubicacion": [3,1] }'
+curl -i  -X POST http://localhost:2222/usuario/cambiar_ubicacion/540fdd594937351d392e4d6b -d 'ubicacion=[3,1]'
 #############################################
 HTTP/1.1 201 Created
 Content-Type: application/json
@@ -115,33 +113,32 @@ Access-Control-Allow-Methods: POST
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
 Content-MD5: c2PoX+nt7m8FOksxlYjAhg==
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Date: Tue, 16 Sep 2014 05:08:02 GMT
 Server: vida-api
-Request-Id: e779deb0-38b4-11e4-b41f-0326775bffc9
-Response-Time: 14
+Request-Id: 6f6adfa0-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 7
 
-{"success":true}
-###Documento cambiado###
+{"success":true}###Documento cambiado###
 HTTP/1.1 201 Created
 Content-Type: application/json
-Content-Length: 595
+Content-Length: 596
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
 Access-Control-Allow-Methods: GET, PUT, DELETE
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: LRJciL2KDNiJiiK3OG962A==
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Content-MD5: xFBBA6xUYzgVvhmBfsVVJg==
+Date: Tue, 16 Sep 2014 05:08:03 GMT
 Server: vida-api
-Request-Id: e77cebf0-38b4-11e4-b41f-0326775bffc9
-Response-Time: 6
+Request-Id: 6f8d0da0-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 212
 
-{"_id":"540fdd594937351d392e4d6b","email":"pruebasprevia@example.com","nombre":"Juan Jose Perez","tipo_sangre":"O-","foto":"","ubicacion":[3,1],"hashed_password":"weR4yda2C4HFQO2EwsvSxp5H4xTjbKkbJJOr2vsc3wzwpScDx6Pv6Fh++ddZZE92gI909ed7kOnh2t0H5RnS/g==","salt":"c+lYKaok7T8yweibXloJhg==","__v":1,"donaciones_pendientes":[],"donaciones_hechas":[],"donaciones_pedidas":["540fddd24937351d392e4d6f"],"personas_extras":[{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"}]}
+{"_id":"540fdd594937351d392e4d6b","email":"pruebasprevia@example.com","nombre":"Juan Jose Perez}","tipo_sangre":"O-","foto":"","ubicacion":[3,1],"hashed_password":"weR4yda2C4HFQO2EwsvSxp5H4xTjbKkbJJOr2vsc3wzwpScDx6Pv6Fh++ddZZE92gI909ed7kOnh2t0H5RnS/g==","salt":"c+lYKaok7T8yweibXloJhg==","__v":1,"donaciones_pendientes":[],"donaciones_hechas":[],"donaciones_pedidas":["540fddd24937351d392e4d6f"],"personas_extras":[{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"}]}
 #############################################
 Agrega Persona Extra
 #############################################
 Comando
-curl -i  -X POST http://localhost:2222/usuario/agregar_persona_extra/540fdd594937351d392e4d6b -d ' { "nombre": "Juanita Perez", "tipo_sangre": "A+", "sexo": "f" }'
+curl -i  -X POST http://localhost:2222/usuario/agregar_persona_extra/540fdd594937351d392e4d6b -d 'nombre=Juanita Perez&tipo_sangre=A+&sexo=f'
 #############################################
 HTTP/1.1 201 Created
 Content-Type: application/json
@@ -152,13 +149,12 @@ Access-Control-Allow-Methods: POST
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
 Content-MD5: c2PoX+nt7m8FOksxlYjAhg==
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Date: Tue, 16 Sep 2014 05:08:03 GMT
 Server: vida-api
-Request-Id: e7806e60-38b4-11e4-b41f-0326775bffc9
-Response-Time: 8
+Request-Id: 6f901ae0-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 5
 
-{"success":true}
-###Documento cambiado###
+{"success":true}###Documento cambiado###
 HTTP/1.1 201 Created
 Content-Type: application/json
 Content-Length: 685
@@ -167,18 +163,18 @@ Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD
 Access-Control-Allow-Methods: GET, PUT, DELETE
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: kvyyOSwfNLrt54EymDvQdA==
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Content-MD5: L7lD1ZGezWHH8DVqjTziCg==
+Date: Tue, 16 Sep 2014 05:08:03 GMT
 Server: vida-api
-Request-Id: e7843ef0-38b4-11e4-b41f-0326775bffc9
-Response-Time: 4
+Request-Id: 6fb2e520-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 214
 
-{"_id":"540fdd594937351d392e4d6b","email":"pruebasprevia@example.com","nombre":"Juan Jose Perez","tipo_sangre":"O-","foto":"","ubicacion":[3,1],"hashed_password":"weR4yda2C4HFQO2EwsvSxp5H4xTjbKkbJJOr2vsc3wzwpScDx6Pv6Fh++ddZZE92gI909ed7kOnh2t0H5RnS/g==","salt":"c+lYKaok7T8yweibXloJhg==","__v":2,"donaciones_pendientes":[],"donaciones_hechas":[],"donaciones_pedidas":["540fddd24937351d392e4d6f"],"personas_extras":[{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540ff19b9fd57b955bd79b4c"}]}
+{"_id":"540fdd594937351d392e4d6b","email":"pruebasprevia@example.com","nombre":"Juan Jose Perez}","tipo_sangre":"O-","foto":"","ubicacion":[3,1],"hashed_password":"weR4yda2C4HFQO2EwsvSxp5H4xTjbKkbJJOr2vsc3wzwpScDx6Pv6Fh++ddZZE92gI909ed7kOnh2t0H5RnS/g==","salt":"c+lYKaok7T8yweibXloJhg==","__v":2,"donaciones_pendientes":[],"donaciones_hechas":[],"donaciones_pedidas":["540fddd24937351d392e4d6f"],"personas_extras":[{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Juanita Perez","tipo_sangre":"A","sexo":"f","_id":"5417c5b3cdfb39512b871a1e"}]}
 #############################################
 Modificar Persona Extra
 #############################################
 Comando
-curl -i  -X POST http://localhost:2222/usuario/modificar_persona_extra/540fdd594937351d392e4d6b -d ' { "_id": "540d2522021fc7d7412f468a", "nombre": "Maria Perez", "tipo_sangre" : "B-"}'
+curl -i  -X POST http://localhost:2222/usuario/modificar_persona_extra/540fdd594937351d392e4d6b -d '_id=540d2522021fc7d7412f468a&nombre=Maria Perez&tipo_sangre =B-}'
 #############################################
 HTTP/1.1 201 Created
 Content-Type: application/json
@@ -189,13 +185,12 @@ Access-Control-Allow-Methods: POST
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
 Content-MD5: c2PoX+nt7m8FOksxlYjAhg==
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Date: Tue, 16 Sep 2014 05:08:03 GMT
 Server: vida-api
-Request-Id: e7883690-38b4-11e4-b41f-0326775bffc9
-Response-Time: 4
+Request-Id: 6fb66790-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 6
 
-{"success":true}
-###Documento cambiado###
+{"success":true}###Documento cambiado###
 HTTP/1.1 201 Created
 Content-Type: application/json
 Content-Length: 683
@@ -204,35 +199,34 @@ Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD
 Access-Control-Allow-Methods: GET, PUT, DELETE
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: dUibCXx2txb9UVLFHB3TsQ==
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Content-MD5: 0ogdUajajyXd6Ml+j42vuA==
+Date: Tue, 16 Sep 2014 05:08:03 GMT
 Server: vida-api
-Request-Id: e78aa790-38b4-11e4-b41f-0326775bffc9
-Response-Time: 2
+Request-Id: 6fcd9910-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 137
 
-{"_id":"540fdd594937351d392e4d6b","email":"pruebasprevia@example.com","nombre":"Juan Jose Perez","tipo_sangre":"O-","foto":"","ubicacion":[3,1],"hashed_password":"weR4yda2C4HFQO2EwsvSxp5H4xTjbKkbJJOr2vsc3wzwpScDx6Pv6Fh++ddZZE92gI909ed7kOnh2t0H5RnS/g==","salt":"c+lYKaok7T8yweibXloJhg==","__v":2,"donaciones_pendientes":[],"donaciones_hechas":[],"donaciones_pedidas":["540fddd24937351d392e4d6f"],"personas_extras":[{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Maria Perez","tipo_sangre":"B-","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540ff19b9fd57b955bd79b4c"}]}
+{"_id":"540fdd594937351d392e4d6b","email":"pruebasprevia@example.com","nombre":"Juan Jose Perez}","tipo_sangre":"O-","foto":"","ubicacion":[3,1],"hashed_password":"weR4yda2C4HFQO2EwsvSxp5H4xTjbKkbJJOr2vsc3wzwpScDx6Pv6Fh++ddZZE92gI909ed7kOnh2t0H5RnS/g==","salt":"c+lYKaok7T8yweibXloJhg==","__v":2,"donaciones_pendientes":[],"donaciones_hechas":[],"donaciones_pedidas":["540fddd24937351d392e4d6f"],"personas_extras":[{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Maria Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Juanita Perez","tipo_sangre":"A","sexo":"f","_id":"5417c5b3cdfb39512b871a1e"}]}
 #############################################
 Borrar Persona Extra
 #############################################
 Comando
-curl -i  -X POST http://localhost:2222/usuario/borrar_persona_extra/540fdd594937351d392e4d6b -d ' { "_id": "540d2522021fc7d7412f468a"}'
+curl -i  -X POST http://localhost:2222/usuario/borrar_persona_extra/540fdd594937351d392e4d6b -d '_id=540d2522021fc7d7412f468a}'
 #############################################
-HTTP/1.1 201 Created
+HTTP/1.1 409 Conflict
 Content-Type: application/json
-Content-Length: 16
+Content-Length: 62
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
 Access-Control-Allow-Methods: POST
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: c2PoX+nt7m8FOksxlYjAhg==
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Content-MD5: L0+3P3HWh9Wzo42G+8Gtlw==
+Date: Tue, 16 Sep 2014 05:08:03 GMT
 Server: vida-api
-Request-Id: e78e9f30-38b4-11e4-b41f-0326775bffc9
-Response-Time: 9
+Request-Id: 6fd0a650-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 5
 
-{"success":true}
-###Documento cambiado###
+{"code":"InvalidArgument","message":"Persona Extra no Existe"}###Documento cambiado###
 HTTP/1.1 201 Created
 Content-Type: application/json
 Content-Length: 683
@@ -241,13 +235,13 @@ Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD
 Access-Control-Allow-Methods: GET, PUT, DELETE
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: lJGmxCocGiq2Ru9ua7erxA==
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Content-MD5: 0ogdUajajyXd6Ml+j42vuA==
+Date: Tue, 16 Sep 2014 05:08:03 GMT
 Server: vida-api
-Request-Id: e791fa90-38b4-11e4-b41f-0326775bffc9
-Response-Time: 4
+Request-Id: 6fe73b90-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 132
 
-{"_id":"540fdd594937351d392e4d6b","email":"pruebasprevia@example.com","nombre":"Juan Jose Perez","tipo_sangre":"O-","foto":"","ubicacion":[3,1],"hashed_password":"weR4yda2C4HFQO2EwsvSxp5H4xTjbKkbJJOr2vsc3wzwpScDx6Pv6Fh++ddZZE92gI909ed7kOnh2t0H5RnS/g==","salt":"c+lYKaok7T8yweibXloJhg==","__v":3,"donaciones_pendientes":[],"donaciones_hechas":[],"donaciones_pedidas":["540fddd24937351d392e4d6f"],"personas_extras":[{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Maria Perez","tipo_sangre":"B-","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540ff19b9fd57b955bd79b4c"}]}
+{"_id":"540fdd594937351d392e4d6b","email":"pruebasprevia@example.com","nombre":"Juan Jose Perez}","tipo_sangre":"O-","foto":"","ubicacion":[3,1],"hashed_password":"weR4yda2C4HFQO2EwsvSxp5H4xTjbKkbJJOr2vsc3wzwpScDx6Pv6Fh++ddZZE92gI909ed7kOnh2t0H5RnS/g==","salt":"c+lYKaok7T8yweibXloJhg==","__v":2,"donaciones_pendientes":[],"donaciones_hechas":[],"donaciones_pedidas":["540fddd24937351d392e4d6f"],"personas_extras":[{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Maria Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Juanita Perez","tipo_sangre":"A","sexo":"f","_id":"5417c5b3cdfb39512b871a1e"}]}
 #############################################
 Borrar Usuario
 #############################################
@@ -263,31 +257,31 @@ Access-Control-Allow-Methods: GET, PUT, DELETE
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
 Content-MD5: c2PoX+nt7m8FOksxlYjAhg==
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Date: Tue, 16 Sep 2014 05:08:03 GMT
 Server: vida-api
-Request-Id: e79507d0-38b4-11e4-b41f-0326775bffc9
-Response-Time: 1
+Request-Id: 6fe91050-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 2
 
-{"success":true}
-###Documento cambiado###
-HTTP/1.1 404 Not Found
+{"success":true}###Documento cambiado###
+HTTP/1.1 401 Unauthorized
+WWW-Authenticate: Basic realm="Users"
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
 Access-Control-Allow-Methods: GET, PUT, DELETE
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Date: Tue, 16 Sep 2014 05:08:03 GMT
 Server: vida-api
-Request-Id: e79751c0-38b4-11e4-b41f-0326775bffc9
-Response-Time: 2
+Request-Id: 6feb8150-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 1
 Transfer-Encoding: chunked
 
-
+Unauthorized
 #############################################
 Prueba crear una donacion
 #############################################
 Comando
-curl -i -X POST -d '{ "creado_por": "540fdd594937351d392e4d6b", "cantidad_pedida": "2", "tipo_sangre": "O-", "lugar_donacion": "cruzroja12312S" }' http://localhost:2222/donacion
+curl -i -X POST -d 'creado_por=540fdd594937351d392e4d6b&cantidad_pedida=2&tipo_sangre=O-&lugar_donacion=cruzroja12312S' http://localhost:2222/donacion
 #############################################
 HTTP/1.1 200 OK
 Content-Type: application/json
@@ -297,13 +291,13 @@ Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD
 Access-Control-Allow-Methods: GET, POST
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: srvN3NcVp0b9mxgXXInF5Q==
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Content-MD5: u0xIO1u4A+FgKEj35XT+AA==
+Date: Tue, 16 Sep 2014 05:08:03 GMT
 Server: vida-api
-Request-Id: e79b9780-38b4-11e4-b41f-0326775bffc9
-Response-Time: 6
+Request-Id: 6fef78f0-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 7
 
-{"__v":0,"creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","_id":"540ff19b9fd57b955bd79b4d","donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T06:37:15.890Z"}
+{"__v":0,"creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","_id":"5417c5b3cdfb39512b871a1f","donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-16T05:08:03.705Z"}
 #############################################
 Prueba buscar donaciones
 #############################################
@@ -312,19 +306,19 @@ curl -i  http://localhost:2222/donacion
 #############################################
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 4569
+Content-Length: 13435
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
 Access-Control-Allow-Methods: GET, POST
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: FX+ilZfGEEDSaI/b9SKfdQ==
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Content-MD5: SI0VrU4E4YVYKet8lIEvHQ==
+Date: Tue, 16 Sep 2014 05:08:03 GMT
 Server: vida-api
-Request-Id: e7a0c7a0-38b4-11e4-b41f-0326775bffc9
-Response-Time: 9
+Request-Id: 6ff62fb0-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 26
 
-[{"_id":"540fe51d4937351d392e4d95","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T05:43:57.568Z"},{"_id":"540fe55f4937351d392e4d98","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T05:45:03.509Z"},{"_id":"540fe5764937351d392e4d9b","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T05:45:26.413Z"},{"_id":"540fe58a4937351d392e4d9e","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T05:45:46.727Z"},{"_id":"540fe5fc4937351d392e4da2","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T05:47:40.790Z"},{"_id":"540fe6c44937351d392e4da6","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T05:51:00.583Z"},{"_id":"540fe7f94937351d392e4daa","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T05:56:09.670Z"},{"_id":"540feb514937351d392e4dae","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T06:10:25.825Z"},{"_id":"540fec01b86e183954230bb9","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T06:13:21.210Z"},{"_id":"540fec16b86e183954230bbd","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T06:13:42.608Z"},{"_id":"540fec2149db86cb545809a3","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T06:13:53.300Z"},{"_id":"540fec871b8ca74456b1c548","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T06:15:35.258Z"},{"_id":"540feffe9fd57b955bd79b43","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T06:30:22.658Z"},{"_id":"540ff1239fd57b955bd79b48","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T06:35:15.164Z"},{"_id":"540fddd24937351d392e4d6f","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T05:12:50.048Z"},{"_id":"540ff19b9fd57b955bd79b4d","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T06:37:15.890Z"}]
+[{"_id":"540ff86732377cc56c3ce106","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T07:06:15.292Z"},{"_id":"540ff89332377cc56c3ce10b","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T07:06:59.307Z"},{"_id":"540ff8e732377cc56c3ce110","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T07:08:23.250Z"},{"_id":"540ff9c832377cc56c3ce116","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T07:12:08.590Z"},{"_id":"540ffa5132377cc56c3ce11c","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T07:14:25.091Z"},{"_id":"540ffb0b8b83c91974dfb889","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T07:17:31.582Z"},{"_id":"540ffba08b83c91974dfb88f","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T07:20:00.035Z"},{"_id":"540ffbc98b83c91974dfb895","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T07:20:41.972Z"},{"_id":"540ffc0d8d4126c878ec529e","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T07:21:49.341Z"},{"_id":"540fe51d4937351d392e4d95","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T05:43:57.568Z"},{"_id":"540fe55f4937351d392e4d98","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T05:45:03.509Z"},{"_id":"540fe5764937351d392e4d9b","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T05:45:26.413Z"},{"_id":"540fe58a4937351d392e4d9e","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T05:45:46.727Z"},{"_id":"540fe5fc4937351d392e4da2","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T05:47:40.790Z"},{"_id":"540fe6c44937351d392e4da6","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T05:51:00.583Z"},{"_id":"540fe7f94937351d392e4daa","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T05:56:09.670Z"},{"_id":"540feb514937351d392e4dae","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T06:10:25.825Z"},{"_id":"540fec01b86e183954230bb9","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T06:13:21.210Z"},{"_id":"540fec16b86e183954230bbd","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T06:13:42.608Z"},{"_id":"540fec2149db86cb545809a3","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T06:13:53.300Z"},{"_id":"540fec871b8ca74456b1c548","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T06:15:35.258Z"},{"_id":"540feffe9fd57b955bd79b43","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T06:30:22.658Z"},{"_id":"540ff1239fd57b955bd79b48","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T06:35:15.164Z"},{"_id":"540ff19b9fd57b955bd79b4d","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T06:37:15.890Z"},{"_id":"540ff1cc9fd57b955bd79b52","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T06:38:04.522Z"},{"_id":"540ff752c81c0f216baa35f2","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T07:01:38.090Z"},{"_id":"540ff7af7a4620ba6b00b5d2","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T07:03:11.566Z"},{"_id":"540ff80932377cc56c3ce100","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T07:04:41.297Z"},{"_id":"5411ee0eab72be740a867119","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-11T18:46:38.293Z"},{"_id":"5411ee1bab72be740a86711f","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-11T18:46:51.230Z"},{"_id":"54167aad536b4265577cb027","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-15T05:35:41.650Z"},{"_id":"54167b27536b4265577cb02d","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-15T05:37:43.835Z"},{"_id":"54167c0cfe726d985b055a82","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-15T05:41:32.556Z"},{"_id":"54167c77e76427c65cf16b09","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-15T05:43:19.806Z"},{"_id":"5417c03dfcaced301e2e410f","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-16T04:44:45.210Z"},{"_id":"5417c1211bb14bc51f1ac508","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-16T04:48:33.478Z"},{"_id":"5417c1966192eeee20d72755","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-16T04:50:30.576Z"},{"_id":"5417c20ca1904fa12260d661","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-16T04:52:28.755Z"},{"_id":"5417c238d1bfe72d2349f5f1","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-16T04:53:12.650Z"},{"_id":"5417c2da2d12551524f4a1e8","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-16T04:55:54.414Z"},{"_id":"5417c3125e6e94a424e0e099","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-16T04:56:50.733Z"},{"_id":"5417c4dd527b56762815e1f1","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-16T05:04:29.645Z"},{"_id":"5417c513da381606290251f7","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-16T05:05:23.750Z"},{"_id":"5417c55314aa0f9729a47de1","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-16T05:06:27.135Z"},{"_id":"5417c58c5bd2812b2a720bde","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-16T05:07:24.876Z"},{"_id":"540fddd24937351d392e4d6f","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T05:12:50.048Z"},{"_id":"5417c5b3cdfb39512b871a1f","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","__v":0,"donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-16T05:08:03.705Z"}]
 #############################################
 Prueba muestra un solo donacion
 #############################################
@@ -340,17 +334,17 @@ Access-Control-Allow-Methods: GET, PUT
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
 Content-MD5: 4FZbW5vX33QPR7oliPwlFQ==
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Date: Tue, 16 Sep 2014 05:08:03 GMT
 Server: vida-api
-Request-Id: e7a3d4e0-38b4-11e4-b41f-0326775bffc9
-Response-Time: 3
+Request-Id: 6ff915e0-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 2
 
 {"_id":"540fddd24937351d392e4d6f","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"O-","lugar_donacion":"cruzroja12312S","donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T05:12:50.048Z"}
 #############################################
 Prueba actualizar un donacion
 #############################################
 Comando
-curl -i  -X PUT http://localhost:2222/donacion/540fddd24937351d392e4d6f -d ' { "tipo_sangre": "B+", "lugar_donacion": "micasa" }'
+curl -i  -X PUT http://localhost:2222/donacion/540fddd24937351d392e4d6f -d 'tipo_sangre=B+&lugar_donacion=micasa'
 #############################################
 HTTP/1.1 201 Created
 Content-Type: application/json
@@ -361,28 +355,27 @@ Access-Control-Allow-Methods: GET, PUT
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
 Content-MD5: c2PoX+nt7m8FOksxlYjAhg==
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Date: Tue, 16 Sep 2014 05:08:03 GMT
 Server: vida-api
-Request-Id: e7a69400-38b4-11e4-b41f-0326775bffc9
-Response-Time: 6
+Request-Id: 6ffc2320-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 4
 
-{"success":true}
-###Documento cambiado###
+{"success":true}###Documento cambiado###
 HTTP/1.1 201 Created
 Content-Type: application/json
-Content-Length: 269
+Content-Length: 268
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
 Access-Control-Allow-Methods: GET, PUT
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: yXETPOw3J98dF4CK+KTZGw==
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Content-MD5: ceJpb9+Uk+P3IczUCbzApA==
+Date: Tue, 16 Sep 2014 05:08:03 GMT
 Server: vida-api
-Request-Id: e7a8b6e0-38b4-11e4-b41f-0326775bffc9
+Request-Id: 6ffe1ef0-3d5f-11e4-83eb-b7d67accd2e4
 Response-Time: 2
 
-{"_id":"540fddd24937351d392e4d6f","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"B+","lugar_donacion":"micasa","donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T05:12:50.048Z"}
+{"_id":"540fddd24937351d392e4d6f","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"B","lugar_donacion":"micasa","donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"A","fecha_solicitud":"2014-09-10T05:12:50.048Z"}
 #############################################
 Cancela una donacion
 #############################################
@@ -398,66 +391,63 @@ Access-Control-Allow-Methods: POST
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
 Content-MD5: c2PoX+nt7m8FOksxlYjAhg==
-Date: Wed, 10 Sep 2014 06:37:15 GMT
+Date: Tue, 16 Sep 2014 05:08:03 GMT
 Server: vida-api
-Request-Id: e7ab7600-38b4-11e4-b41f-0326775bffc9
-Response-Time: 3
+Request-Id: 70010520-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 4
 
-{"success":true}
-###Documento cambiado###
+{"success":true}###Documento cambiado###
 HTTP/1.1 201 Created
 Content-Type: application/json
-Content-Length: 269
+Content-Length: 268
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
 Access-Control-Allow-Methods: GET, PUT
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: zNGDGKdB8ZF/mRQPNxbriw==
-Date: Wed, 10 Sep 2014 06:37:16 GMT
+Content-MD5: R1Yg/hBGHvDfhA0IDS32ZA==
+Date: Tue, 16 Sep 2014 05:08:03 GMT
 Server: vida-api
-Request-Id: e7ae0e10-38b4-11e4-b41f-0326775bffc9
-Response-Time: 2
+Request-Id: 70039d30-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 4
 
-{"_id":"540fddd24937351d392e4d6f","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"B+","lugar_donacion":"micasa","donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"C","fecha_solicitud":"2014-09-10T05:12:50.048Z"}
+{"_id":"540fddd24937351d392e4d6f","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"B","lugar_donacion":"micasa","donaciones_hechas":[],"cantidad_confirmadas":0,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"C","fecha_solicitud":"2014-09-10T05:12:50.048Z"}
 #############################################
 Atender Solicitud Donacion
 #############################################
 Comando
-curl -i  -X POST http://localhost:2222/donacion/atender_solicitud/540fddd24937351d392e4d6f -d ' { "hecha_por": "540fdd594937351d392e4d6b" }'
+curl -i  -X POST http://localhost:2222/donacion/atender_solicitud/540fddd24937351d392e4d6f -d 'hecha_por=540fdd594937351d392e4d6b'
 #############################################
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 407
+Content-Length: 406
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
 Access-Control-Allow-Methods: POST
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: 4Ow2gskOuB24ccECCBPw7Q==
-Date: Wed, 10 Sep 2014 06:37:16 GMT
+Content-MD5: QCwRWGIFHmqwNYBMrmdcgw==
+Date: Tue, 16 Sep 2014 05:08:03 GMT
 Server: vida-api
-Request-Id: e7b14260-38b4-11e4-b41f-0326775bffc9
-Response-Time: 8
+Request-Id: 70076dc0-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 9
 
-{"__v":1,"_id":"540fddd24937351d392e4d6f","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"B+","lugar_donacion":"micasa","donaciones_hechas":[{"hecha_por":"540fdd594937351d392e4d6b","_id":"540ff19c9fd57b955bd79b4e","estado":"P","fecha_donacion":"2014-09-10T06:37:16.032Z"}],"cantidad_confirmadas":0,"cantidad_pendientes":1,"cantidad_pedida":2,"estado":"C","fecha_solicitud":"2014-09-10T05:12:50.048Z"}
-###Documento cambiado###
+{"__v":1,"_id":"540fddd24937351d392e4d6f","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"B","lugar_donacion":"micasa","donaciones_hechas":[{"hecha_por":"540fdd594937351d392e4d6b","_id":"5417c5b3cdfb39512b871a20","estado":"P","fecha_donacion":"2014-09-16T05:08:03.862Z"}],"cantidad_confirmadas":0,"cantidad_pendientes":1,"cantidad_pedida":2,"estado":"C","fecha_solicitud":"2014-09-10T05:12:50.048Z"}###Documento cambiado###
 HTTP/1.1 201 Created
 Content-Type: application/json
-Content-Length: 407
+Content-Length: 406
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
 Access-Control-Allow-Methods: GET, PUT
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: 3Pjq7vm3G661RXYpIMNsvA==
-Date: Wed, 10 Sep 2014 06:37:16 GMT
+Content-MD5: FmsTixg7bWx98x0bZtrKng==
+Date: Tue, 16 Sep 2014 05:08:03 GMT
 Server: vida-api
-Request-Id: e7b44fa0-38b4-11e4-b41f-0326775bffc9
+Request-Id: 700ac920-3d5f-11e4-83eb-b7d67accd2e4
 Response-Time: 3
 
-{"_id":"540fddd24937351d392e4d6f","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"B+","lugar_donacion":"micasa","__v":1,"donaciones_hechas":[{"hecha_por":"540fdd594937351d392e4d6b","_id":"540ff19c9fd57b955bd79b4e","estado":"P","fecha_donacion":"2014-09-10T06:37:16.032Z"}],"cantidad_confirmadas":0,"cantidad_pendientes":1,"cantidad_pedida":2,"estado":"C","fecha_solicitud":"2014-09-10T05:12:50.048Z"}
-###Documento cambiado(Usuario)###
+{"_id":"540fddd24937351d392e4d6f","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"B","lugar_donacion":"micasa","__v":1,"donaciones_hechas":[{"hecha_por":"540fdd594937351d392e4d6b","_id":"5417c5b3cdfb39512b871a20","estado":"P","fecha_donacion":"2014-09-16T05:08:03.862Z"}],"cantidad_confirmadas":0,"cantidad_pendientes":1,"cantidad_pedida":2,"estado":"C","fecha_solicitud":"2014-09-10T05:12:50.048Z"}###Documento cambiado(Usuario)###
 HTTP/1.1 201 Created
 Content-Type: application/json
 Content-Length: 736
@@ -466,18 +456,18 @@ Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD
 Access-Control-Allow-Methods: GET, PUT, DELETE
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: wjSvFsFeMokPliR0JCI53Q==
-Date: Wed, 10 Sep 2014 06:37:16 GMT
+Content-MD5: EP6JKQoa8wiVATO6m4wMHw==
+Date: Tue, 16 Sep 2014 05:08:04 GMT
 Server: vida-api
-Request-Id: e7b7d210-38b4-11e4-b41f-0326775bffc9
-Response-Time: 9
+Request-Id: 702fdd50-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 232
 
-{"_id":"540fdd594937351d392e4d6b","email":"pruebasprevia@example.com","nombre":"Juan Jose Perez","tipo_sangre":"O-","foto":"","ubicacion":[3,1],"hashed_password":"weR4yda2C4HFQO2EwsvSxp5H4xTjbKkbJJOr2vsc3wzwpScDx6Pv6Fh++ddZZE92gI909ed7kOnh2t0H5RnS/g==","salt":"c+lYKaok7T8yweibXloJhg==","__v":5,"donaciones_pendientes":["540fddd24937351d392e4d6f"],"donaciones_hechas":[],"donaciones_pedidas":["540fddd24937351d392e4d6f","540ff19b9fd57b955bd79b4d"],"personas_extras":[{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Maria Perez","tipo_sangre":"B-","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540ff19b9fd57b955bd79b4c"}]}
+{"_id":"540fdd594937351d392e4d6b","email":"pruebasprevia@example.com","nombre":"Juan Jose Perez}","tipo_sangre":"O-","foto":"","ubicacion":[3,1],"hashed_password":"weR4yda2C4HFQO2EwsvSxp5H4xTjbKkbJJOr2vsc3wzwpScDx6Pv6Fh++ddZZE92gI909ed7kOnh2t0H5RnS/g==","salt":"c+lYKaok7T8yweibXloJhg==","__v":4,"donaciones_pendientes":["540fddd24937351d392e4d6f"],"donaciones_hechas":[],"donaciones_pedidas":["540fddd24937351d392e4d6f","5417c5b3cdfb39512b871a1f"],"personas_extras":[{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Maria Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Juanita Perez","tipo_sangre":"A","sexo":"f","_id":"5417c5b3cdfb39512b871a1e"}]}
 #############################################
 Confirmar Donacion
 #############################################
 Comando
-curl -i  -X POST http://localhost:2222/donacion/confirmar_donacion/540fddd24937351d392e4d6f -d ' { "hecha_por": "540fdd594937351d392e4d6b" }'
+curl -i  -X POST http://localhost:2222/donacion/confirmar_donacion/540fddd24937351d392e4d6f -d 'hecha_por=540fdd594937351d392e4d6b'
 #############################################
 HTTP/1.1 201 Created
 Content-Type: application/json
@@ -488,29 +478,27 @@ Access-Control-Allow-Methods: POST
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
 Content-MD5: c2PoX+nt7m8FOksxlYjAhg==
-Date: Wed, 10 Sep 2014 06:37:16 GMT
+Date: Tue, 16 Sep 2014 05:08:04 GMT
 Server: vida-api
-Request-Id: e7bb0660-38b4-11e4-b41f-0326775bffc9
-Response-Time: 9
+Request-Id: 703386d0-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 11
 
-{"success":true}
-###Documento cambiado###
+{"success":true}###Documento cambiado###
 HTTP/1.1 201 Created
 Content-Type: application/json
-Content-Length: 407
+Content-Length: 406
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
 Access-Control-Allow-Methods: GET, PUT
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: OGqWwtHCJwiydUe9HRee7g==
-Date: Wed, 10 Sep 2014 06:37:16 GMT
+Content-MD5: jytvi5Ayc9qstbt125D0Bw==
+Date: Tue, 16 Sep 2014 05:08:04 GMT
 Server: vida-api
-Request-Id: e7be88d0-38b4-11e4-b41f-0326775bffc9
-Response-Time: 3
+Request-Id: 7036bb20-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 2
 
-{"_id":"540fddd24937351d392e4d6f","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"B+","lugar_donacion":"micasa","__v":1,"donaciones_hechas":[{"hecha_por":"540fdd594937351d392e4d6b","_id":"540ff19c9fd57b955bd79b4e","estado":"C","fecha_donacion":"2014-09-10T06:37:16.032Z"}],"cantidad_confirmadas":1,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"C","fecha_solicitud":"2014-09-10T05:12:50.048Z"}
-###Documento cambiado(Usuario)###
+{"_id":"540fddd24937351d392e4d6f","creado_por":"540fdd594937351d392e4d6b","tipo_sangre":"B","lugar_donacion":"micasa","__v":1,"donaciones_hechas":[{"hecha_por":"540fdd594937351d392e4d6b","_id":"5417c5b3cdfb39512b871a20","estado":"C","fecha_donacion":"2014-09-16T05:08:03.862Z"}],"cantidad_confirmadas":1,"cantidad_pendientes":0,"cantidad_pedida":2,"estado":"C","fecha_solicitud":"2014-09-10T05:12:50.048Z"}###Documento cambiado(Usuario)###
 HTTP/1.1 201 Created
 Content-Type: application/json
 Content-Length: 736
@@ -519,13 +507,13 @@ Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD
 Access-Control-Allow-Methods: GET, PUT, DELETE
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: BM3lfXYpxocVr4Uk5X3JSg==
-Date: Wed, 10 Sep 2014 06:37:16 GMT
+Content-MD5: t9b7DXAl3WZKkBDEHrZhpw==
+Date: Tue, 16 Sep 2014 05:08:04 GMT
 Server: vida-api
-Request-Id: e7c20b40-38b4-11e4-b41f-0326775bffc9
-Response-Time: 3
+Request-Id: 7059ac70-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 214
 
-{"_id":"540fdd594937351d392e4d6b","email":"pruebasprevia@example.com","nombre":"Juan Jose Perez","tipo_sangre":"O-","foto":"","ubicacion":[3,1],"hashed_password":"weR4yda2C4HFQO2EwsvSxp5H4xTjbKkbJJOr2vsc3wzwpScDx6Pv6Fh++ddZZE92gI909ed7kOnh2t0H5RnS/g==","salt":"c+lYKaok7T8yweibXloJhg==","__v":6,"donaciones_pendientes":[],"donaciones_hechas":["540fddd24937351d392e4d6f"],"donaciones_pedidas":["540fddd24937351d392e4d6f","540ff19b9fd57b955bd79b4d"],"personas_extras":[{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Maria Perez","tipo_sangre":"B-","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540ff19b9fd57b955bd79b4c"}]}
+{"_id":"540fdd594937351d392e4d6b","email":"pruebasprevia@example.com","nombre":"Juan Jose Perez}","tipo_sangre":"O-","foto":"","ubicacion":[3,1],"hashed_password":"weR4yda2C4HFQO2EwsvSxp5H4xTjbKkbJJOr2vsc3wzwpScDx6Pv6Fh++ddZZE92gI909ed7kOnh2t0H5RnS/g==","salt":"c+lYKaok7T8yweibXloJhg==","__v":5,"donaciones_pendientes":[],"donaciones_hechas":["540fddd24937351d392e4d6f"],"donaciones_pedidas":["540fddd24937351d392e4d6f","5417c5b3cdfb39512b871a1f"],"personas_extras":[{"nombre":"Juanita Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Maria Perez","tipo_sangre":"A+","sexo":"f","_id":"540fddd14937351d392e4d6e"},{"nombre":"Juanita Perez","tipo_sangre":"A","sexo":"f","_id":"5417c5b3cdfb39512b871a1e"}]}
 #############################################
 Prueba busca todos los lugares
 #############################################
@@ -534,135 +522,127 @@ curl -i  http://localhost:2222/lugar
 #############################################
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 315
+Content-Length: 3503
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
 Access-Control-Allow-Methods: GET, POST
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: t8wRHrNcOkAk0s5q+ael9A==
-Date: Wed, 10 Sep 2014 06:37:16 GMT
+Content-MD5: +E++UV1prs7E0CCq/dzbkA==
+Date: Tue, 16 Sep 2014 05:08:04 GMT
 Server: vida-api
-Request-Id: e7c4f170-38b4-11e4-b41f-0326775bffc9
-Response-Time: 4
+Request-Id: 705d55f0-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 10
 
-[{"_id":"540ff1239fd57b955bd79b4a","nombre":"Mi casa","__v":0,"fecha_agregado":"2014-09-10T06:35:15.453Z"},{"_id":"540feffe9fd57b955bd79b45","nombre":"Datos Iniciales","fecha_agregado":"2014-09-10T06:30:22.978Z"},{"_id":"540fddd14937351d392e4d6e","nombre":"Para Borrar","fecha_agregado":"2014-09-10T06:30:22.978Z"}]
+[{"_id":"540ff1239fd57b955bd79b4a","nombre":"Mi casa","__v":0,"fecha_agregado":"2014-09-10T06:35:15.453Z"},{"_id":"540ff19c9fd57b955bd79b4f","nombre":"Mi casa","__v":0,"fecha_agregado":"2014-09-10T06:37:16.184Z"},{"_id":"540ff1cc9fd57b955bd79b54","nombre":"Mi casa","__v":0,"fecha_agregado":"2014-09-10T06:38:04.819Z"},{"_id":"540ff752c81c0f216baa35f4","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-10T07:01:38.410Z"},{"_id":"540ff7af7a4620ba6b00b5d4","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-10T07:03:11.886Z"},{"_id":"540ff80932377cc56c3ce102","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-10T07:04:41.657Z"},{"_id":"540ff86732377cc56c3ce108","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-10T07:06:15.601Z"},{"_id":"540ff89332377cc56c3ce10d","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-10T07:06:59.618Z"},{"_id":"540ff8e732377cc56c3ce112","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-10T07:08:23.564Z"},{"_id":"540ff9c832377cc56c3ce118","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-10T07:12:08.925Z"},{"_id":"540ffa5132377cc56c3ce11e","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-10T07:14:25.380Z"},{"_id":"540ffb0b8b83c91974dfb88b","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-10T07:17:31.918Z"},{"_id":"540ffba08b83c91974dfb891","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-10T07:20:00.390Z"},{"_id":"540ffbca8b83c91974dfb897","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-10T07:20:42.295Z"},{"_id":"540ffc0d8d4126c878ec52a0","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-10T07:21:49.677Z"},{"_id":"5411ee0eab72be740a86711b","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-11T18:46:38.596Z"},{"_id":"5411ee1bab72be740a867121","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-11T18:46:51.491Z"},{"_id":"54167aad536b4265577cb029","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-15T05:35:41.980Z"},{"_id":"54167b28536b4265577cb02f","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-15T05:37:44.190Z"},{"_id":"54167c0cfe726d985b055a84","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-15T05:41:32.910Z"},{"_id":"54167c78e76427c65cf16b0b","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-15T05:43:20.140Z"},{"_id":"5417c2da2d12551524f4a1ea","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-16T04:55:54.717Z"},{"_id":"5417c3135e6e94a424e0e09b","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-16T04:56:51.393Z"},{"_id":"5417c4dd527b56762815e1f3","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-16T05:04:29.959Z"},{"_id":"5417c514da381606290251f9","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-16T05:05:24.468Z"},{"_id":"5417c55314aa0f9729a47de3","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-16T05:06:27.894Z"},{"_id":"5417c58d5bd2812b2a720be0","nombre":"Mi casa","ubicacion":[2,1],"__v":0,"fecha_agregado":"2014-09-16T05:07:25.214Z"},{"_id":"540feffe9fd57b955bd79b45","nombre":"Datos Iniciales","fecha_agregado":"2014-09-10T06:30:22.978Z"},{"_id":"540fddd14937351d392e4d6e","nombre":"Para Borrar","fecha_agregado":"2014-09-10T06:30:22.978Z"}]
 #############################################
 Prueba agregar un lugares
 #############################################
 Comando
-curl -i -X POST -d '{ "nombre": "Mi casa", "ubicacion": [2,1] }' http://localhost:2222/lugar
+curl -i -X POST -d 'nombre=Mi casa&ubicacion=[2,1]' http://localhost:2222/lugar
 #############################################
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 105
+Content-Length: 123
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
 Access-Control-Allow-Methods: GET, POST
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: M2rk4rIc7m6AL+RjVYKb5g==
-Date: Wed, 10 Sep 2014 06:37:16 GMT
+Content-MD5: 2bU2egw5H9JnzKjVUQrX4g==
+Date: Tue, 16 Sep 2014 05:08:04 GMT
 Server: vida-api
-Request-Id: e7c7d7a0-38b4-11e4-b41f-0326775bffc9
+Request-Id: 70601510-3d5f-11e4-83eb-b7d67accd2e4
 Response-Time: 2
 
-{"__v":0,"nombre":"Mi casa","_id":"540ff19c9fd57b955bd79b4f","fecha_agregado":"2014-09-10T06:37:16.184Z"}
+{"__v":0,"nombre":"Mi casa","ubicacion":[2,1],"_id":"5417c5b4cdfb39512b871a21","fecha_agregado":"2014-09-16T05:08:04.447Z"}
 #############################################
 Prueba muestra un solo lugar
 #############################################
 Comando
-curl -i http://localhost:2222/lugar/540feffe9fd57b955bd79b45
+curl -i http://localhost:2222/lugar/540ff8e732377cc56c3ce113
 #############################################
-HTTP/1.1 201 Created
-Content-Type: application/json
-Content-Length: 105
+HTTP/1.1 404 Not Found
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
 Access-Control-Allow-Methods: GET, PUT, DELETE
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: YlAYMudWPMUAPNMyDAc+HA==
-Date: Wed, 10 Sep 2014 06:37:16 GMT
+Date: Tue, 16 Sep 2014 05:08:04 GMT
 Server: vida-api
-Request-Id: e7cb8120-38b4-11e4-b41f-0326775bffc9
+Request-Id: 70634960-3d5f-11e4-83eb-b7d67accd2e4
 Response-Time: 2
+Transfer-Encoding: chunked
 
-{"_id":"540feffe9fd57b955bd79b45","nombre":"Datos Iniciales","fecha_agregado":"2014-09-10T06:30:22.978Z"}
+
 #############################################
 Prueba actualiza un lugar
 #############################################
 Comando
-curl -i  -X PUT http://localhost:2222/lugar/540feffe9fd57b955bd79b45 -d ' { "nombre": "Tu Apa" }'
+curl -i  -X PUT http://localhost:2222/lugar/540ff8e732377cc56c3ce113 -d 'nombre=Tu Apa'
 #############################################
-HTTP/1.1 201 Created
+HTTP/1.1 500 Internal Server Error
 Content-Type: application/json
-Content-Length: 16
+Content-Length: 70
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
 Access-Control-Allow-Methods: GET, PUT, DELETE
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: c2PoX+nt7m8FOksxlYjAhg==
-Date: Wed, 10 Sep 2014 06:37:16 GMT
+Content-MD5: 6nZXChh1c6fBDiNueeeMfQ==
+Date: Tue, 16 Sep 2014 05:08:04 GMT
 Server: vida-api
-Request-Id: e7cf2aa0-38b4-11e4-b41f-0326775bffc9
-Response-Time: 8
+Request-Id: 7067dd40-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 5
 
-{"success":true}
-###Documento cambiado###
-HTTP/1.1 201 Created
-Content-Type: application/json
-Content-Length: 96
+{"code":"InternalError","message":"Cannot call method 'save' of null"}###Documento cambiado###
+HTTP/1.1 404 Not Found
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
 Access-Control-Allow-Methods: GET, PUT, DELETE
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: rvtFkV3QzNvSykYjzTAVyQ==
-Date: Wed, 10 Sep 2014 06:37:16 GMT
+Date: Tue, 16 Sep 2014 05:08:04 GMT
 Server: vida-api
-Request-Id: e7d14d80-38b4-11e4-b41f-0326775bffc9
-Response-Time: 2
+Request-Id: 706a9c60-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 1
+Transfer-Encoding: chunked
 
-{"_id":"540feffe9fd57b955bd79b45","nombre":"Tu Apa","fecha_agregado":"2014-09-10T06:30:22.978Z"}
+
 #############################################
 Cambia la ubicacion del lugar
 #############################################
 Comando
-curl -i  -X POST http://localhost:2222/lugar/cambiar_ubicacion/540feffe9fd57b955bd79b45 -d ' { "ubicacion": [10,20] }'
+curl -i  -X POST http://localhost:2222/lugar/cambiar_ubicacion/540ff8e732377cc56c3ce113 -d 'ubicacion=[10,20]'
 #############################################
-HTTP/1.1 201 Created
+HTTP/1.1 500 Internal Server Error
 Content-Type: application/json
-Content-Length: 16
+Content-Length: 70
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
 Access-Control-Allow-Methods: POST
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: c2PoX+nt7m8FOksxlYjAhg==
-Date: Wed, 10 Sep 2014 06:37:16 GMT
+Content-MD5: 6nZXChh1c6fBDiNueeeMfQ==
+Date: Tue, 16 Sep 2014 05:08:04 GMT
 Server: vida-api
-Request-Id: e7d3e590-38b4-11e4-b41f-0326775bffc9
+Request-Id: 706d8290-3d5f-11e4-83eb-b7d67accd2e4
 Response-Time: 3
 
-{"success":true}
-###Documento cambiado###
-HTTP/1.1 201 Created
-Content-Type: application/json
-Content-Length: 96
+{"code":"InternalError","message":"Cannot call method 'save' of null"}###Documento cambiado###
+HTTP/1.1 404 Not Found
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
 Access-Control-Allow-Methods: GET, PUT, DELETE
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Content-MD5: rvtFkV3QzNvSykYjzTAVyQ==
-Date: Wed, 10 Sep 2014 06:37:16 GMT
+Date: Tue, 16 Sep 2014 05:08:04 GMT
 Server: vida-api
-Request-Id: e7d5ba50-38b4-11e4-b41f-0326775bffc9
-Response-Time: 2
+Request-Id: 7071a140-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 1
+Transfer-Encoding: chunked
 
-{"_id":"540feffe9fd57b955bd79b45","nombre":"Tu Apa","fecha_agregado":"2014-09-10T06:30:22.978Z"}
+
 #############################################
 Borrar lugar
 #############################################
@@ -678,23 +658,191 @@ Access-Control-Allow-Methods: GET, PUT, DELETE
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
 Content-MD5: c2PoX+nt7m8FOksxlYjAhg==
-Date: Wed, 10 Sep 2014 06:37:16 GMT
+Date: Tue, 16 Sep 2014 05:08:04 GMT
 Server: vida-api
-Request-Id: e7d8a080-38b4-11e4-b41f-0326775bffc9
+Request-Id: 70746060-3d5f-11e4-83eb-b7d67accd2e4
 Response-Time: 2
 
-{"success":true}
-###Documento cambiado###
+{"success":true}###Documento cambiado###
 HTTP/1.1 404 Not Found
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
 Access-Control-Allow-Methods: GET, PUT, DELETE
 Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
 Connection: Keep-Alive
-Date: Wed, 10 Sep 2014 06:37:16 GMT
+Date: Tue, 16 Sep 2014 05:08:04 GMT
 Server: vida-api
-Request-Id: e7da7540-38b4-11e4-b41f-0326775bffc9
+Request-Id: 7076d160-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 3
+Transfer-Encoding: chunked
+
+
+#############################################
+Prueba busca todos los eventos
+#############################################
+Comando
+curl -i  http://localhost:2222/evento
+#############################################
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 3496
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
+Access-Control-Allow-Methods: GET, POST
+Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
+Connection: Keep-Alive
+Content-MD5: zj4AWajz9FQB1orKYWwSpQ==
+Date: Tue, 16 Sep 2014 05:08:04 GMT
+Server: vida-api
+Request-Id: 707c0180-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 14
+
+[{"_id":"540ff9c932377cc56c3ce119","nombre":"Una vida mejor","descripcion":"Campana en la autonama para donar","fecha_inicio":"2014-09-10T05:12:50.048Z","fecha_fin":"2014-09-10T05:12:50.048Z","ubicacion":[2,5],"__v":0,"cantidad_donada":0,"estado":"A"},{"_id":"540ffa5132377cc56c3ce11f","nombre":"Una vida mejor","descripcion":"Campana en la autonama para donar","fecha_inicio":"2014-09-10T05:12:50.048Z","fecha_fin":"2014-09-10T05:12:50.048Z","ubicacion":[2,5],"__v":0,"cantidad_donada":0,"estado":"A"},{"_id":"540ffb0c8b83c91974dfb88c","nombre":"Una vida mejor","descripcion":"Campana en la autonama para donar","fecha_inicio":"2014-09-10T05:12:50.048Z","fecha_fin":"2014-09-10T05:12:50.048Z","ubicacion":[2,5],"__v":0,"cantidad_donada":0,"estado":"A"},{"_id":"540ffba08b83c91974dfb892","nombre":"Una vida mejor","descripcion":"Campana en la autonama para donar","fecha_inicio":"2014-09-10T05:12:50.048Z","fecha_fin":"2014-09-10T05:12:50.048Z","ubicacion":[2,5],"__v":0,"cantidad_donada":0,"estado":"A"},{"_id":"540ffbca8b83c91974dfb898","nombre":"Una vida mejor","descripcion":"Campana en la autonama para donar","fecha_inicio":"2014-09-10T05:12:50.048Z","fecha_fin":"2014-09-10T05:12:50.048Z","ubicacion":[2,5],"__v":0,"cantidad_donada":0,"estado":"A"},{"_id":"540ffc0d8d4126c878ec52a1","nombre":"Una vida mejor","descripcion":"Campana en la autonama para donar","fecha_inicio":"2014-09-10T05:12:50.048Z","fecha_fin":"2014-09-10T05:12:50.048Z","ubicacion":[2,5],"__v":0,"cantidad_donada":0,"estado":"A"},{"_id":"5411ee0eab72be740a86711c","nombre":"Una vida mejor","descripcion":"Campana en la autonama para donar","fecha_inicio":"2014-09-10T05:12:50.048Z","fecha_fin":"2014-09-10T05:12:50.048Z","ubicacion":[2,5],"__v":0,"cantidad_donada":0,"estado":"A"},{"_id":"5411ee1bab72be740a867122","nombre":"Una vida mejor","descripcion":"Campana en la autonama para donar","fecha_inicio":"2014-09-10T05:12:50.048Z","fecha_fin":"2014-09-10T05:12:50.048Z","ubicacion":[2,5],"__v":0,"cantidad_donada":0,"estado":"A"},{"_id":"54167aae536b4265577cb02a","nombre":"Una vida mejor","descripcion":"Campana en la autonama para donar","fecha_inicio":"2014-09-10T05:12:50.048Z","fecha_fin":"2014-09-10T05:12:50.048Z","ubicacion":[2,5],"__v":0,"cantidad_donada":0,"estado":"A"},{"_id":"54167b28536b4265577cb030","nombre":"Una vida mejor","descripcion":"Campana en la autonama para donar","fecha_inicio":"2014-09-10T05:12:50.048Z","fecha_fin":"2014-09-10T05:12:50.048Z","ubicacion":[2,5],"__v":0,"cantidad_donada":0,"estado":"A"},{"_id":"54167c0dfe726d985b055a85","nombre":"Una vida mejor","descripcion":"Campana en la autonama para donar","fecha_inicio":"2014-09-10T05:12:50.048Z","fecha_fin":"2014-09-10T05:12:50.048Z","ubicacion":[2,5],"__v":0,"cantidad_donada":0,"estado":"A"},{"_id":"54167c78e76427c65cf16b0c","nombre":"Una vida mejor","descripcion":"Campana en la autonama para donar","fecha_inicio":"2014-09-10T05:12:50.048Z","fecha_fin":"2014-09-10T05:12:50.048Z","ubicacion":[2,5],"__v":0,"cantidad_donada":0,"estado":"A"},{"_id":"540ff8e732377cc56c3ce113","nombre":"Una vida mejor","descripcion":"Campana en la autonama para donar","fecha_inicio":"2014-09-10T05:12:50.048Z","fecha_fin":"2014-09-10T05:12:50.048Z","ubicacion":[2,5],"cantidad_donada":0,"estado":"A"},{"_id":"540fddd24937351d392e4d6f","nombre":"Para Borrar","descripcion":"Campana en la autonama para donar","fecha_inicio":"2014-09-10T05:12:50.048Z","fecha_fin":"2014-09-10T05:12:50.048Z","ubicacion":[2,5],"cantidad_donada":0,"estado":"A"}]
+#############################################
+Prueba agregar un eventos
+#############################################
+Comando
+curl -i -X POST -d 'nombre=Una vida mejor&descripcion=Campana en la autonama para donar&fecha_inicio=12-12-2012&fecha_fin=13-12-2012&ubicacion=[2,5]}' http://localhost:2222/evento
+#############################################
+HTTP/1.1 500 Internal Server Error
+Content-Type: application/json
+Content-Length: 55
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
+Access-Control-Allow-Methods: GET, POST
+Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
+Connection: Keep-Alive
+Content-MD5: Nyss9bsYN+krIY8qDEsuCg==
+Date: Tue, 16 Sep 2014 05:08:04 GMT
+Server: vida-api
+Request-Id: 707e4b70-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 3
+
+{"code":"InternalError","message":"Unexpected token }"}
+#############################################
+Prueba muestra un solo evento
+#############################################
+Comando
+curl -i http://localhost:2222/evento/540ff8e732377cc56c3ce113
+#############################################
+HTTP/1.1 201 Created
+Content-Type: application/json
+Content-Length: 242
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
+Access-Control-Allow-Methods: GET, PUT, DELETE
+Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
+Connection: Keep-Alive
+Content-MD5: 1dfdnnHNlB+ls1VocyHilA==
+Date: Tue, 16 Sep 2014 05:08:04 GMT
+Server: vida-api
+Request-Id: 708131a0-3d5f-11e4-83eb-b7d67accd2e4
 Response-Time: 2
+
+{"_id":"540ff8e732377cc56c3ce113","nombre":"Una vida mejor","descripcion":"Campana en la autonama para donar","fecha_inicio":"2014-09-10T05:12:50.048Z","fecha_fin":"2014-09-10T05:12:50.048Z","ubicacion":[2,5],"cantidad_donada":0,"estado":"A"}
+#############################################
+Prueba actualiza un evento
+#############################################
+Comando
+curl -i  -X PUT http://localhost:2222/evento/540ff8e732377cc56c3ce113 -d 'nombre=Una vida MAS mejor'
+#############################################
+HTTP/1.1 201 Created
+Content-Type: application/json
+Content-Length: 16
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
+Access-Control-Allow-Methods: GET, PUT, DELETE
+Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
+Connection: Keep-Alive
+Content-MD5: c2PoX+nt7m8FOksxlYjAhg==
+Date: Tue, 16 Sep 2014 05:08:04 GMT
+Server: vida-api
+Request-Id: 70863ab0-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 3
+
+{"success":true}###Documento cambiado###
+HTTP/1.1 201 Created
+Content-Type: application/json
+Content-Length: 247
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
+Access-Control-Allow-Methods: GET, PUT, DELETE
+Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
+Connection: Keep-Alive
+Content-MD5: B8GAgPo0eI6hAuQixdq/5Q==
+Date: Tue, 16 Sep 2014 05:08:04 GMT
+Server: vida-api
+Request-Id: 708a8070-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 4
+
+{"_id":"540ff8e732377cc56c3ce113","nombre":"Una vida MAS mejor}","descripcion":"Campana en la autonama para donar","fecha_inicio":"2014-09-10T05:12:50.048Z","fecha_fin":"2014-09-10T05:12:50.048Z","ubicacion":[2,5],"cantidad_donada":0,"estado":"A"}
+#############################################
+Cancelar el Evento
+#############################################
+Comando
+curl -i  -X POST http://localhost:2222/evento/cancelar_evento/540ff8e732377cc56c3ce113
+#############################################
+HTTP/1.1 201 Created
+Content-Type: application/json
+Content-Length: 16
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
+Access-Control-Allow-Methods: POST
+Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
+Connection: Keep-Alive
+Content-MD5: c2PoX+nt7m8FOksxlYjAhg==
+Date: Tue, 16 Sep 2014 05:08:04 GMT
+Server: vida-api
+Request-Id: 708cca60-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 3
+
+{"success":true}###Documento cambiado###
+HTTP/1.1 201 Created
+Content-Type: application/json
+Content-Length: 247
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
+Access-Control-Allow-Methods: GET, PUT, DELETE
+Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
+Connection: Keep-Alive
+Content-MD5: ehnv5k2a2DzIYDJI3nY3Nw==
+Date: Tue, 16 Sep 2014 05:08:04 GMT
+Server: vida-api
+Request-Id: 708f6270-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 2
+
+{"_id":"540ff8e732377cc56c3ce113","nombre":"Una vida MAS mejor}","descripcion":"Campana en la autonama para donar","fecha_inicio":"2014-09-10T05:12:50.048Z","fecha_fin":"2014-09-10T05:12:50.048Z","ubicacion":[2,5],"cantidad_donada":0,"estado":"C"}
+#############################################
+Borrar evento
+#############################################
+Comando
+curl -i  -X DELETE http://localhost:2222/evento/540fddd24937351d392e4d6f
+#############################################
+HTTP/1.1 201 Created
+Content-Type: application/json
+Content-Length: 16
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
+Access-Control-Allow-Methods: GET, PUT, DELETE
+Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
+Connection: Keep-Alive
+Content-MD5: c2PoX+nt7m8FOksxlYjAhg==
+Date: Tue, 16 Sep 2014 05:08:04 GMT
+Server: vida-api
+Request-Id: 709248a0-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 2
+
+{"success":true}###Documento cambiado###
+HTTP/1.1 404 Not Found
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time
+Access-Control-Allow-Methods: GET, PUT, DELETE
+Access-Control-Expose-Headers: Api-Version, Request-Id, Response-Time
+Connection: Keep-Alive
+Date: Tue, 16 Sep 2014 05:08:04 GMT
+Server: vida-api
+Request-Id: 7094b9a0-3d5f-11e4-83eb-b7d67accd2e4
+Response-Time: 1
 Transfer-Encoding: chunked
 
 

@@ -22,11 +22,27 @@ var Usuario = new Schema ({
         trim: true
     },
     hashed_password: String,
-    provider: String,
     salt: String,
-    facebook: {},
-    twitter: {},
-    google: {},
+    facebook: {
+        id: {
+            type: String,
+            trim: true
+        },
+        token: {
+            type: String,
+            trim: true
+        }
+    },
+    google: {
+        id: {
+            type: String,
+            trim: true
+        },
+        token: {
+            type: String,
+            trim: true
+        }
+    },
     fecha_ultima_donacion: {
         type: Date
     },
@@ -88,44 +104,18 @@ Usuario.virtual('password').set(function(password) {
     return this._password;
 });
 
-/**
- * Validations
- */
-var validatePresenceOf = function(value) {
-    return value && value.length;
-};
 
 // the below 4 validations only apply if you are signing up traditionally
 Usuario.path('nombre').validate(function(name) {
     // if you are authenticating by any of the oauth strategies, don't validate
-    if (!this.provider) return true;
     return (typeof name === 'string' && name.length > 0);
 }, 'El nombre no puede estar vacio');
 
 Usuario.path('email').validate(function(email) {
     // if you are authenticating by any of the oauth strategies, don't validate
-    if (!this.provider) return true;
     return (typeof email === 'string' && email.length > 0);
 }, 'El email no puede estar vacio');
 
-
-Usuario.path('hashed_password').validate(function(hashed_password) {
-    // if you are authenticating by any of the oauth strategies, don't validate
-    if (!this.provider) return true;
-    return (typeof hashed_password === 'string' && hashed_password.length > 0);
-}, 'Password no pude estar vacio');
-
-/**
- * Pre-save hook
- */
-Usuario.pre('save', function(next) {
-    if (!this.isNew) return next();
-
-    if (!validatePresenceOf(this.password) && !this.provider)
-        next(new Error('Invalid password'));
-    else
-        next();
-});
 
 /**
  * Methods
