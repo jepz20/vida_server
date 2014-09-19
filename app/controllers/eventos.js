@@ -51,8 +51,12 @@ exports.show = function (req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.create = function (req, res, next) {
+    console.log('req.body');
+    console.log(req.body);
     var parametros = {};
     parametros = req.body;
+    console.log('parametros');
+    console.log(parametros);
     var dataEvento = {
         nombre: parametros.nombre,
         descripcion: parametros.descripcion,
@@ -63,6 +67,7 @@ exports.create = function (req, res, next) {
     var evento = new Evento(dataEvento);
     evento.save(function(error,data) {
         if (error) {
+            console.log(error);
             return next (new restify.InvalidArgumentError(
                 JSON.stringify(error.err)));
         }

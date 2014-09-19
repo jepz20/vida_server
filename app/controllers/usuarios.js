@@ -31,8 +31,6 @@ var buscarParaActualizar = function(res,next,id, datosParaActualizar) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.show = function (req, res, next) {
-    console.log('req.user');
-    console.log(req.user);
     Usuario.findOne({_id:req.params.id}, function (error,usuario) {
         if (error) {
             return next(new restify.InvalidArgumentError(

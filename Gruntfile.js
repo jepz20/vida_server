@@ -32,23 +32,24 @@ module.exports = function(grunt) {
             }
         },
         nodemon: {
-            dev: {
-                options: {
-                    file: 'app.js',
-                    args: [],
-                    watchedExtensions: ['js'],
-                    ignoredFiles: ['node_modules/**'],
-                    nodeArgs: ['--debug'],
-                    delayTime: 100,
-                    env: {
-                        PORT: 2222
-                    },
-                    cwd: __dirname
-                }
+          dev: {
+            script: 'app.js',
+            options: {
+              args: ['dev'],
+              nodeArgs: ['--debug'],
+              env: {
+                PORT: '2222'
+              },
+              cwd: __dirname,
+              ignore: ['node_modules/**'],
+              ext: 'js',
+              delay: 1000,
+              legacyWatch: true
             }
+          }
         },
         concurrent: {
-            tasks: ['nodemon', 'watch'],
+            tasks: ['watch','nodemon'],
             options: {
                 logConcurrentOutput: true
             }

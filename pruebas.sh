@@ -263,9 +263,9 @@ echo "#############################################"
 echo -e "Prueba agregar un eventos"
 echo "#############################################"
 echo "Comando"
-echo "curl -i -X POST -d 'nombre=Una vida mejor&descripcion=Campana en la autonama para donar&fecha_inicio=12-12-2012&fecha_fin=13-12-2012&ubicacion=[2,5]}' http://localhost:2222/evento"
+echo "curl -i -X POST -d 'nombre=Una vida mejor&descripcion=Campana en la autonama para donar&fecha_inicio=2014-09-10T05:12:50.048Z&fecha_fin=2014-09-10T05:12:50.048Z&ubicacion=[2,5]' http://localhost:2222/evento"
 echo "#############################################"
-curl -i -X POST -d 'nombre=Una vida mejor&descripcion=Campana en la autonama para donar&fecha_inicio=2014-09-10T05:12:50.048Z&fecha_fin=2014-09-10T05:12:50.048Z&ubicacion=[2,5]}' http://localhost:2222/evento
+curl -i -X POST -d 'nombre=Una vida mejor&descripcion=Campana en la autonama para donar&fecha_inicio=2014-09-10T05:12:50.048Z&fecha_fin=2014-09-10T05:12:50.048Z&ubicacion=[2,5]' http://localhost:2222/evento
 echo ""
 ##busca un evento
 echo "#############################################"

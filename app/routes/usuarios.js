@@ -16,7 +16,7 @@ module.exports = function(server, passport) {
     var isAuthenticated = passport.authenticate('basic', { session : false });
     server.post('/usuario', usuarios.create);
     server.get('/usuario/:id', isAuthenticated, usuarios.show);
-    server.put('/usuario/:id', usuarios.update);
+    server.put('/usuario/:id', isAuthenticated, usuarios.update);
     server.post('/usuario/cambiar_ubicacion/:id', usuarios.cambiarUbicacion);
     server.post('/usuario/agregar_persona_extra/:id', usuarios.agregarPersonaExtra);
     server.post('/usuario/borrar_persona_extra/:id', usuarios.borrarPersonaExtra);
