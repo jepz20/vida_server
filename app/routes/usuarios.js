@@ -14,6 +14,7 @@ var usuarios = require('../controllers/usuarios');
 
 module.exports = function(server, passport) {
     var isAuthenticated = passport.authenticate('basic', { session : false });
+    server.get('/usuario', usuarios.all);
     server.post('/usuario', usuarios.create);
     server.get('/usuario/:id', isAuthenticated, usuarios.show);
     server.put('/usuario/:id', isAuthenticated, usuarios.update);

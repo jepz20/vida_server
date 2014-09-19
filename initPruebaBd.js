@@ -1,8 +1,10 @@
 db.usuarios.remove({"_id": ObjectId("540fdd594937351d392e4d6b")});
 db.usuarios.remove({"email": "pruebas@example.com"});
 db.donacions.remove({"_id" : ObjectId("540fddd24937351d392e4d6f")});
+db.donacions.remove({"creado_por" : ObjectId("540fdd594937351d392e4d6b")});
 db.lugars.remove({"_id" : ObjectId("540feffe9fd57b955bd79b45")});
 db.lugars.remove({"_id" : ObjectId("540fddd14937351d392e4d6e")});
+db.lugars.remove({"nombre" : "Datos Iniciales"});
 db.eventos.remove({"_id" : ObjectId("540ff8e732377cc56c3ce113")});
 db.eventos.remove({"_id" : ObjectId("540fddd24937351d392e4d6f")});
 db.usuarios.insert({ "_id" : ObjectId("540fdd594937351d392e4d6b"),

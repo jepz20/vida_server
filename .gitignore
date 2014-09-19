@@ -2,9 +2,7 @@
 .nodemonignore
 .sass-cache/
 node_modules/
-public/lib
-public/pdfs/*
-public/contenido/*
+reports/
 test/coverage/
 .bower-cache
 .bower-registry

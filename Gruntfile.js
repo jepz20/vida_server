@@ -7,7 +7,7 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: ['gruntfile.js', 'app.js', 'app/**/*.js', 'config/**/*'],
-                tasks: ['jshint']
+                tasks: ['jshint','mochaTest']
             }
             // ,
             // html: {
@@ -53,8 +53,7 @@ module.exports = function(grunt) {
             options: {
                 logConcurrentOutput: true
             }
-        }
-        // ,
+        },
         // mochaTest: {
         //     options: {
         //         reporter: 'spec',
@@ -71,15 +70,34 @@ module.exports = function(grunt) {
         //     unit: {
         //         configFile: 'test/karma/karma.conf.js'
         //     }
-        // }
+        // },
+        plato: {
+          your_task: {
+            options : {
+              jshint : false
+            },
+            files: {
+              'reports': ['app/**/*.js']
+            }
+          }
+        },
+        mochaTest: {
+          test: {
+            options: {
+              reporter: 'spec'
+            },
+            src: ['test/**/*.js']
+          }
+        }
     });
 
     //Load NPM tasks
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-nodemon');
+    grunt.loadNpmTasks('grunt-plato');
     grunt.loadNpmTasks('grunt-concurrent');
-    // grunt.loadNpmTasks('grunt-mocha-test');
+    grunt.loadNpmTasks('grunt-mocha-test');
     // grunt.loadNpmTasks('grunt-karma');
     // grunt.loadNpmTasks('grunt-env');
 
@@ -87,8 +105,8 @@ module.exports = function(grunt) {
     grunt.option('force', true);
 
     //Default task(s).
-    grunt.registerTask('default', ['jshint', 'concurrent']);
+    grunt.registerTask('default', ['jshint', 'concurrent', 'mochaTest']);
 
     //Test task.
-    // grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
+    grunt.registerTask('test', [/*'env:test', */'mochaTest'/*, 'karma:unit'*/]);
 };
