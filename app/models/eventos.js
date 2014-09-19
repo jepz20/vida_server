@@ -6,9 +6,6 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var Schema = mongoose.Schema
-,ObjectId = Schema.ObjectId;
-
 var Evento = new Schema ({
     nombre: {
         type: String,

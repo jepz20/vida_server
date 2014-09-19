@@ -3,11 +3,9 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
-
-var Schema = mongoose.Schema
-,ObjectId = Schema.ObjectId;
+var mongoose = require('mongoose')
+    ,Schema = mongoose.Schema
+    ,ObjectId = Schema.ObjectId;
 
 var Donacion = new Schema ({
     creado_por : {

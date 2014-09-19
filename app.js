@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Inicializando variables
  */
@@ -11,13 +12,13 @@ var restify = require('restify')
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 //requiero la configuracion despues de definir el ambiente
-var config = require('./config/config')
+var config = require('./config/config');
 //inicio la conexion a mongo
-var db = mongoose.connect(config.db);
+mongoose.connect(config.db);
 
 
 //Directorio para los modelos
-models_path = __dirname + '/app/models'
+var models_path = __dirname + '/app/models';
 //Recorre todos los archivos de la caperta
 //y los inicializa con  un require a los archivos
 var walk = function(path) {
@@ -41,14 +42,11 @@ require('./config/passport')(passport);
 var server = restify.createServer({ name : 'vida-api'});
 
 // server.use(restify.acceptParser(server.acceptable));
-server.use(restify.authorizationParser());
-// server.use(restify.dateParser());
-server.use(restify.queryParser({ mapParams : false }));
-// server.use(restify.urlEncodedBodyParser());
-server.use(restify.bodyParser({ mapParams : false }));
-server.use(restify.fullResponse())
-    // .use(restify.bodyParser())
-server.use(passport.initialize());
+server.use(restify.authorizationParser())
+.use(restify.queryParser({ mapParams : false }))
+.use(restify.bodyParser({ mapParams : false }))
+.use(restify.fullResponse())
+.use(passport.initialize());
 
 //Directorio para las rutas
 var routes_path = __dirname +'/app/routes';
@@ -73,11 +71,11 @@ var walk = function(path) {
 
 walk(routes_path);
 
-var port = process.env.PORT || '2222'
+var port = process.env.PORT || '2222';
 //Inicializo la aplicacion en el puerto 2222
 server.listen(port,function() {
-    console.log('%s listentig at %s',server.name,server.url)
-})
+    console.log('%s listentig at %s',server.name,server.url);
+});
 
 // Inicializo los logs
 //logger.init(server, mongoose);

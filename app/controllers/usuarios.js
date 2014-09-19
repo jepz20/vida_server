@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var mongoose = require('mongoose')
     ,restify = require('restify')
@@ -11,19 +11,19 @@ var mongoose = require('mongoose')
  *@param {string} id del usuarios a actualizar
  *@param {JSON} datosParaActualizar datos para actualizar
  */
-var buscarParaActualizar = function(res,id, datosParaActualizar) {
+var buscarParaActualizar = function(res,next,id, datosParaActualizar) {
     Usuario.findOne({_id: id}, function (error, usuario) {
         usuario = _.extend(usuario,datosParaActualizar);
         usuario.save(
-            function(err, usuario){
-                if (err){
+            function(error){
+                if (error){
                 return next(new restify.InvalidArgumentError(
-                    JSON.stringify(error)))
+                    JSON.stringify(error)));
                 }
-                res.send(201,{success:true})
-        })
-    })
-}
+                res.send(201,{success:true});
+        });
+    });
+};
 /**
  * Muestra un usuario segun su id
  * @req {function} datos que vienen del servidor cuando buscan el metodo
@@ -31,18 +31,20 @@ var buscarParaActualizar = function(res,id, datosParaActualizar) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.show = function (req, res, next) {
+    console.log('req.user');
+    console.log(req.user);
     Usuario.findOne({_id:req.params.id}, function (error,usuario) {
         if (error) {
             return next(new restify.InvalidArgumentError(
-            JSON.stringify(error)))
+            JSON.stringify(error)));
         }
         if (usuario) {
-            res.send(201,usuario)
+            res.send(201,usuario);
         } else {
-            res.send(404)
+            res.send(404);
         }
-    })
-}
+    });
+};
 
 /**
  * Crear un usuario
@@ -51,7 +53,7 @@ exports.show = function (req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.create = function (req, res, next) {
-    var parametros = {}
+    var parametros = {};
     parametros = req.body;
     console.log('parametros');
     console.log(parametros);
@@ -62,22 +64,20 @@ exports.create = function (req, res, next) {
         foto: parametros.foto,
         ubicacion: JSON.parse(parametros.ubicacion),
         password: parametros.password
-    }
-    console.log('dataUsuario');
-    console.log(dataUsuario);
+    };
     var usuario = new Usuario(dataUsuario);
     usuario.save(function(error,data) {
         if (error) {
             console.log(error);
             return next (new restify.InvalidArgumentError(
-                JSON.stringify(error.err)))
+                JSON.stringify(error.err)));
         }
         else {
             res.json(data);
         }
-        res.send(201,dataUsuario)
-    })
-}
+        res.send(201,dataUsuario);
+    });
+};
 
 /**
  * Actualiza los datos basicos del usuario
@@ -86,7 +86,7 @@ exports.create = function (req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.update = function(req, res, next) {
-    var parametros = {}
+    var parametros = {};
     parametros = req.body;
     var dataUsuario = {};
     if (parametros.email){
@@ -98,8 +98,8 @@ exports.update = function(req, res, next) {
     if (parametros.tipo_sangre){
         dataUsuario.tipo_sangre = parametros.tipo_sangre;
     }
-    buscarParaActualizar(res,req.params.id,dataUsuario);
-}
+    buscarParaActualizar(res,next,req.params.id,dataUsuario);
+};
 
 /**
  * Actualiza los datos basicos del usuario
@@ -108,14 +108,14 @@ exports.update = function(req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.cambiarUbicacion = function(req, res, next) {
-    var parametros = {}
+    var parametros = {};
     parametros = req.body;
 
     var dataUsuario = {
         ubicacion: JSON.parse(parametros.ubicacion)
-    }
-    buscarParaActualizar(res,req.params.id,dataUsuario);
-}
+    };
+    buscarParaActualizar(res,next,req.params.id,dataUsuario);
+};
 
 
 
@@ -126,18 +126,18 @@ exports.cambiarUbicacion = function(req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.agregarPersonaExtra = function(req, res, next) {
-    var parametros = {}
+    var parametros = {};
     parametros = req.body;
 
     var persona_extra = {
             nombre: parametros.nombre,
             tipo_sangre: parametros.tipo_sangre,
             sexo: parametros.sexo
-        }
+        };
     Usuario.findOne({_id: req.params.id}, function(error, usuario){
         if (error) {
             return next (new restify.InvalidArgumentError(
-                JSON.stringify(error)))
+                JSON.stringify(error)));
         }
         if (!usuario) {
             return next (new restify.InvalidArgumentError('Usuario no Existe'));
@@ -150,16 +150,16 @@ exports.agregarPersonaExtra = function(req, res, next) {
                 usuario.personas_extras = persona_extra;
             }
             usuario.save(
-                    function(err, usuario){
-                    if (err){
+                    function(error){
+                    if (error){
                     return next(new restify.InvalidArgumentError(
-                        JSON.stringify(error)))
+                        JSON.stringify(error)));
                     }
-                    res.send(201,{success:true})
-            })
+                    res.send(201,{success:true});
+            });
         }
-    })
-}
+    });
+};
 
 /**
  * Agrega o actualiza una de las personas extras
@@ -168,13 +168,13 @@ exports.agregarPersonaExtra = function(req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.borrarPersonaExtra = function(req, res, next) {
-    var parametros = {}
+    var parametros = {};
     parametros = req.body;
-    var posicion = -1
+    var posicion = -1;
     Usuario.findOne({_id: req.params.id}, function(error, usuario){
         if (error) {
             return next (new restify.InvalidArgumentError(
-                JSON.stringify(error)))
+                JSON.stringify(error)));
         }
         if (!usuario) {
             return next (new restify.InvalidArgumentError('Usuario no Existe'));
@@ -189,20 +189,20 @@ exports.borrarPersonaExtra = function(req, res, next) {
             if (posicion !== -1) {
                 usuario.personas_extras.splice(posicion,-1);
                 usuario.save(
-                        function(err, usuario){
-                        if (err){
+                        function(error){
+                        if (error){
                         return next(new restify.InvalidArgumentError(
-                            JSON.stringify(error)))
+                            JSON.stringify(error)));
                         }
-                        res.send(201,{success:true})
-                })
+                        res.send(201,{success:true});
+                });
             }
             else {
                 return next (new restify.InvalidArgumentError('Persona Extra no Existe'));
             }
         }
-    })
- }
+    });
+};
 
 /**
  * Agrega o actualiza una de las personas extras
@@ -211,13 +211,13 @@ exports.borrarPersonaExtra = function(req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.modificarPersonaExtra = function(req, res, next) {
-    var parametros = {}
+    var parametros = {};
     parametros = req.body;
-    var posicion = -1
+    var posicion = -1;
     Usuario.findOne({_id: req.params.id}, function(error, usuario){
         if (error) {
             return next (new restify.InvalidArgumentError(
-                JSON.stringify(error)))
+                JSON.stringify(error)));
         }
         if (!usuario) {
             return next (new restify.InvalidArgumentError('Usuario no Existe'));
@@ -240,20 +240,20 @@ exports.modificarPersonaExtra = function(req, res, next) {
                     usuario.personas_extras[posicion].sexo = parametros.sexo;
                 }
                 usuario.save(
-                    function(err, usuario){
-                        if (err){
+                    function(error){
+                        if (error){
                         return next(new restify.InvalidArgumentError(
-                            JSON.stringify(error)))
+                            JSON.stringify(error)));
                         }
-                        res.send(201,{success:true})
-                })
+                        res.send(201,{success:true});
+                });
             }
             else {
                 return next (new restify.InvalidArgumentError('Persona Extra no Existe'));
             }
         }
-    })
-}
+    });
+};
 
 
 
@@ -265,14 +265,14 @@ exports.modificarPersonaExtra = function(req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.destroy = function(req, res, next) {
-    Usuario.remove({_id: req.params.id}, function(error,usuario){
+    Usuario.remove({_id: req.params.id}, function(error){
         if (error) {
             return next(new restify.InvalidArgumentError(
             JSON.stringify(error)));
         }
         res.send(201,{success:true});
-    })
-}
+    });
+};
 
 /**
  * Muestra todos los usuarios
@@ -281,7 +281,11 @@ exports.destroy = function(req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.all = function(req, res, next) {
-        Usuario.find({}, function (error, usuarios) {
-            res.send(usuarios)
-        })
-    }
+    Usuario.find({}, function (error, usuarios) {
+        if (error) {
+            return next(new restify.InvalidArgumentError(
+            JSON.stringify(error)));
+        }
+        res.send(usuarios);
+    });
+};

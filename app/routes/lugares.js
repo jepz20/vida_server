@@ -1,6 +1,6 @@
 'use strict';
 
-var lugares = require('../controllers/lugares')
+var lugares = require('../controllers/lugares');
 //Categorias routes use categorias controller
 //var authorization = require('./middlewares/authorization');
 

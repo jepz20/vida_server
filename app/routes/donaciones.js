@@ -1,6 +1,6 @@
 'use strict';
 
-var donaciones = require('../controllers/donaciones')
+var donaciones = require('../controllers/donaciones');
 //Categorias routes use categorias controller
 //var authorization = require('./middlewares/authorization');
 

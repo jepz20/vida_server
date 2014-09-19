@@ -31,7 +31,7 @@ echo "#############################################"
 echo "Comando"
 echo "curl -i http://localhost:2222/usuario/540fdd594937351d392e4d6b" --user pruebas@example.com:paraqueco
 echo "#############################################"
-curl -i http://localhost:2222/usuario/540fdd594937351d392e4d6b --user pruebas@example.com:paraqueuo
+curl -i http://localhost:2222/usuario/540fdd594937351d392e4d6b --user pruebas@example.com:paraque
 echo ""
 ##Actualiza un usuario
 echo "#############################################"

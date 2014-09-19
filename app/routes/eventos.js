@@ -1,6 +1,6 @@
 'use strict';
 
-var eventos = require('../controllers/eventos')
+var eventos = require('../controllers/eventos');
 //Categorias routes use categorias controller
 //var authorization = require('./middlewares/authorization');
 

@@ -1,12 +1,8 @@
 'use strict';
 
-var usuarios = require('../controllers/usuarios')
-//Categorias routes use categorias controller
-//var authorization = require('./middlewares/authorization');
+var usuarios = require('../controllers/usuarios');
+// var authorization = require('./middlewares/authorization');
 
-var isAuthenticated = function(req,res,next,passport) {
-    passport.authenticate('basic', { session : false })
-}
 
 // // Categorias authorization helpers
 // var hasAuthorization = function(req, res, next) {

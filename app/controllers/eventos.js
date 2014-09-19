@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var mongoose = require('mongoose')
     ,restify = require('restify')
@@ -11,19 +11,19 @@ var mongoose = require('mongoose')
  *@param {string} id del eventos a actualizar
  *@param {JSON} datosParaActualizar datos para actualizar
  */
-var buscarParaActualizar = function(res,id, datosParaActualizar) {
+var buscarParaActualizar = function(res, next, id, datosParaActualizar) {
     Evento.findOne({_id: id}, function (error, evento) {
         evento = _.extend(evento,datosParaActualizar);
         evento.save(
-            function(err, evento){
-                if (err){
+            function(error){
+                if (error){
                 return next(new restify.InvalidArgumentError(
-                    JSON.stringify(error)))
+                    JSON.stringify(error)));
                 }
-                res.send(201,{success:true})
-        })
-    })
-}
+                res.send(201,{success:true});
+        });
+    });
+};
 /**
  * Muestra un evento segun su id
  * @req {function} datos que vienen del servidor cuando buscan el metodo
@@ -34,15 +34,15 @@ exports.show = function (req, res, next) {
     Evento.findOne({_id:req.params.id}, function (error,evento) {
         if (error) {
             return next(new restify.InvalidArgumentError(
-            JSON.stringify(error)))
+            JSON.stringify(error)));
         }
         if (evento) {
-            res.send(201,evento)
+            res.send(201,evento);
         } else {
-            res.send(404)
+            res.send(404);
         }
-    })
-}
+    });
+};
 
 /**
  * Crear un evento
@@ -51,7 +51,7 @@ exports.show = function (req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.create = function (req, res, next) {
-    var parametros = {}
+    var parametros = {};
     parametros = req.body;
     var dataEvento = {
         nombre: parametros.nombre,
@@ -59,19 +59,19 @@ exports.create = function (req, res, next) {
         fecha_inicio: parametros.fecha_inicio,
         fecha_fin: parametros.fecha_fin,
         ubicacion: JSON.parse(parametros.ubicacion)
-    }
+    };
     var evento = new Evento(dataEvento);
     evento.save(function(error,data) {
         if (error) {
             return next (new restify.InvalidArgumentError(
-                JSON.stringify(error.err)))
+                JSON.stringify(error.err)));
         }
         else {
             res.json(data);
         }
-        res.send(201,dataEvento)
-    })
-}
+        res.send(201,dataEvento);
+    });
+};
 
 /**
  * Actualiza los datos basicos del evento
@@ -80,7 +80,7 @@ exports.create = function (req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.update = function(req, res, next) {
-    var parametros = {}
+    var parametros = {};
     parametros = req.body;
     var dataEvento = {};
     if (parametros.nombre){
@@ -98,8 +98,8 @@ exports.update = function(req, res, next) {
     if (parametros.ubicacion){
         dataEvento.ubicacion = JSON.parse(parametros.ubicacion);
     }
-    buscarParaActualizar(res,req.params.id,dataEvento);
-}
+    buscarParaActualizar(res,next,req.params.id,dataEvento);
+};
 
 /**
  * Actualiza la ubicacion del evento
@@ -111,9 +111,9 @@ exports.cancelarEvento = function(req, res, next) {
 
     var dataEvento = {
         estado: 'C'
-    }
-    buscarParaActualizar(res,req.params.id,dataEvento);
-}
+    };
+    buscarParaActualizar(res,next,req.params.id,dataEvento);
+};
 
 /**
  * Borra un evento
@@ -122,14 +122,14 @@ exports.cancelarEvento = function(req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.destroy = function(req, res, next) {
-    Evento.remove({_id: req.params.id}, function(error,evento){
+    Evento.remove({_id: req.params.id}, function(error){
         if (error) {
             return next(new restify.InvalidArgumentError(
             JSON.stringify(error)));
         }
         res.send(201,{success:true});
-    })
-}
+    });
+};
 
 /**
  * Muestra todos los eventos
@@ -138,7 +138,11 @@ exports.destroy = function(req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.all = function(req, res, next) {
-        Evento.find({}, function (error, eventoes) {
-            res.send(eventoes)
-        })
-    }
+        Evento.find({}, function (error, eventos) {
+            if (error) {
+                return next(new restify.InvalidArgumentError(
+                JSON.stringify(error)));
+            }
+            res.send(eventos);
+        });
+};

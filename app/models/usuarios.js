@@ -3,12 +3,10 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    crypto = require('crypto');
-
-var Schema = mongoose.Schema
-,ObjectId = Schema.ObjectId;
+var mongoose = require('mongoose')
+    ,Schema = mongoose.Schema
+    ,crypto = require('crypto')
+    ,ObjectId = Schema.ObjectId;
 
 var Usuario = new Schema ({
     email : {
@@ -80,15 +78,15 @@ var Usuario = new Schema ({
         }
     }],
     donaciones_pedidas: [{
-        type: Schema.ObjectId,
+        type: ObjectId,
         ref: 'Donacion'
     }],
     donaciones_hechas: [{
-        type: Schema.ObjectId,
+        type: ObjectId,
         ref: 'Donacion'
     }],
     donaciones_pendientes: [{
-        type: Schema.ObjectId,
+        type: ObjectId,
         ref: 'Donacion'
     }]
 });
@@ -159,7 +157,7 @@ Usuario.methods = {
 Usuario.statics.load = function(id, cb) {
     this.findOne({
         _id: id
-    });
+    },cb);
 };
 
 

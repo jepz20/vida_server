@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var mongoose = require('mongoose')
     ,restify = require('restify')
@@ -11,19 +11,19 @@ var mongoose = require('mongoose')
  *@param {string} id del lugars a actualizar
  *@param {JSON} datosParaActualizar datos para actualizar
  */
-var buscarParaActualizar = function(res,id, datosParaActualizar) {
+var buscarParaActualizar = function(res,next,id, datosParaActualizar) {
     Lugar.findOne({_id: id}, function (error, lugar) {
         lugar = _.extend(lugar,datosParaActualizar);
         lugar.save(
-            function(err, lugar){
-                if (err){
+            function(error){
+                if (error){
                 return next(new restify.InvalidArgumentError(
-                    JSON.stringify(error)))
+                    JSON.stringify(error)));
                 }
-                res.send(201,{success:true})
-        })
-    })
-}
+                res.send(201,{success:true});
+        });
+    });
+};
 /**
  * Muestra un lugar segun su id
  * @req {function} datos que vienen del servidor cuando buscan el metodo
@@ -34,15 +34,15 @@ exports.show = function (req, res, next) {
     Lugar.findOne({_id:req.params.id}, function (error,lugar) {
         if (error) {
             return next(new restify.InvalidArgumentError(
-            JSON.stringify(error)))
+            JSON.stringify(error)));
         }
         if (lugar) {
-            res.send(201,lugar)
+            res.send(201,lugar);
         } else {
-            res.send(404)
+            res.send(404);
         }
-    })
-}
+    });
+};
 
 /**
  * Crear un lugar
@@ -51,24 +51,24 @@ exports.show = function (req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.create = function (req, res, next) {
-    var parametros = {}
+    var parametros = {};
     parametros = req.body;
     var dataLugar = {
         nombre: parametros.nombre,
         ubicacion: JSON.parse(parametros.ubicacion)
-    }
+    };
     var lugar = new Lugar(dataLugar);
     lugar.save(function(error,data) {
         if (error) {
             return next (new restify.InvalidArgumentError(
-                JSON.stringify(error.err)))
+                JSON.stringify(error.err)));
         }
         else {
             res.json(data);
         }
-        res.send(201,dataLugar)
-    })
-}
+        res.send(201,dataLugar);
+    });
+};
 
 /**
  * Actualiza los datos basicos del lugar
@@ -77,14 +77,14 @@ exports.create = function (req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.update = function(req, res, next) {
-    var parametros = {}
+    var parametros = {};
     parametros = req.body;
     var dataLugar = {};
     if (parametros.nombre){
         dataLugar.nombre = parametros.nombre;
     }
-    buscarParaActualizar(res,req.params.id,dataLugar);
-}
+    buscarParaActualizar(res,next,req.params.id,dataLugar);
+};
 
 /**
  * Actualiza la ubicacion del lugar
@@ -93,14 +93,14 @@ exports.update = function(req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.cambiarUbicacion = function(req, res, next) {
-    var parametros = {}
+    var parametros = {};
     parametros = req.body;
 
     var dataLugar = {
         ubicacion: JSON.parse(parametros.ubicacion)
-    }
-    buscarParaActualizar(res,req.params.id,dataLugar);
-}
+    };
+    buscarParaActualizar(res,next,req.params.id,dataLugar);
+};
 
 /**
  * Borra un lugar
@@ -109,14 +109,14 @@ exports.cambiarUbicacion = function(req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.destroy = function(req, res, next) {
-    Lugar.remove({_id: req.params.id}, function(error,lugar){
+    Lugar.remove({_id: req.params.id}, function(error){
         if (error) {
             return next(new restify.InvalidArgumentError(
             JSON.stringify(error)));
         }
         res.send(201,{success:true});
-    })
-}
+    });
+};
 
 /**
  * Muestra todos los lugars
@@ -125,7 +125,11 @@ exports.destroy = function(req, res, next) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.all = function(req, res, next) {
-        Lugar.find({}, function (error, lugares) {
-            res.send(lugares)
-        })
-    }
+    Lugar.find({}, function (error,lugares) {
+        if (error) {
+            return next(new restify.InvalidArgumentError(
+            JSON.stringify(error)));
+        }
+        res.send(lugares);
+    });
+};
