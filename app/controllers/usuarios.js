@@ -20,7 +20,7 @@ var buscarParaActualizar = function(res,next,id, datosParaActualizar) {
                 return next(new restify.InvalidArgumentError(
                     JSON.stringify(error)));
                 }
-                res.send(201,{success:true});
+                res.send(200,{success:true});
         });
     });
 };
@@ -31,13 +31,14 @@ var buscarParaActualizar = function(res,next,id, datosParaActualizar) {
  * @next {function} callback que se ejecutara despues del procedimiento
  */
 exports.show = function (req, res, next) {
-    Usuario.findOne({_id:req.params.id}, function (error,usuario) {
+    Usuario.findOne({_id:req.params.id}, { hashed_password:0,salt:0,__v:0 },function (error,usuario) {
         if (error) {
+            console.log(error);
             return next(new restify.InvalidArgumentError(
             JSON.stringify(error)));
         }
         if (usuario) {
-            res.send(201,usuario);
+            res.send(200,usuario);
         } else {
             res.send(404);
         }
@@ -53,8 +54,6 @@ exports.show = function (req, res, next) {
 exports.create = function (req, res, next) {
     var parametros = {};
     parametros = req.body;
-    console.log('parametros');
-    console.log(parametros);
     var dataUsuario = {
         email: parametros.email,
         nombre: parametros.nombre,
@@ -153,7 +152,7 @@ exports.agregarPersonaExtra = function(req, res, next) {
                     return next(new restify.InvalidArgumentError(
                         JSON.stringify(error)));
                     }
-                    res.send(201,{success:true});
+                    res.send(200,{success:true});
             });
         }
     });

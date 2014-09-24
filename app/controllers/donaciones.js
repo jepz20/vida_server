@@ -27,7 +27,7 @@ var buscarParaActualizar = function(res, next, id, datosParaActualizar) {
                 return next(new restify.InvalidArgumentError(
                     JSON.stringify(error)));
                 }
-                res.send(201,{success:true});
+                res.send(200,{success:true});
         });
     });
 };

@@ -37,7 +37,7 @@ exports.show = function (req, res, next) {
             JSON.stringify(error)));
         }
         if (lugar) {
-            res.send(201,lugar);
+            res.send(200,lugar);
         } else {
             res.send(404);
         }

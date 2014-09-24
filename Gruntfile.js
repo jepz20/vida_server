@@ -6,7 +6,7 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         watch: {
             js: {
-                files: ['gruntfile.js', 'app.js', 'app/**/*.js', 'config/**/*'],
+                files: ['gruntfile.js', 'app.js', 'app/**/*.js', 'config/**/*','test/**/*'],
                 tasks: ['jshint','mochaTest']
             }
             // ,
@@ -43,7 +43,7 @@ module.exports = function(grunt) {
               cwd: __dirname,
               ignore: ['node_modules/**'],
               ext: 'js',
-              delay: 1000,
+              delay: 1,
               legacyWatch: true
             }
           }
@@ -105,8 +105,8 @@ module.exports = function(grunt) {
     grunt.option('force', true);
 
     //Default task(s).
-    grunt.registerTask('default', ['jshint', 'concurrent', 'mochaTest']);
+    grunt.registerTask('default', ['jshint', 'concurrent']);
 
     //Test task.
-    grunt.registerTask('test', [/*'env:test', */'mochaTest'/*, 'karma:unit'*/]);
+    grunt.registerTask('test', [/*'env:test', */'mochaTest'/*,'plato'*//*, 'karma:unit'*/]);
 };

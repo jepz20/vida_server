@@ -21,13 +21,11 @@ module.exports = function(passport) {
                         return done(err);
                     }
                     if (!usuario) {
-                        console.log('usuario no existe');
                         return done(null, false, {
                             message: 'El usuario no existe, favor verifique'
                         });
                     }
                     if (!usuario.authenticate(password)) {
-                        console.log('calve mala')
                         return done(null, false, {
                             message: 'Contraseña incorrecta, favor verifique'
                         });

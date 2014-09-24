@@ -4,7 +4,8 @@
   "description": "Servidor REST para la aplicacion vida (donacion de sangre)",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
